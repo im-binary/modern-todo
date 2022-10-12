@@ -20,5 +20,4 @@ yarn add -D @types/testing-library__jest-dom
 yarn
 
 yarn start
-
 ```
