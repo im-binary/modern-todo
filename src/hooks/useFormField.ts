@@ -1,13 +1,22 @@
-import { useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 
-export default function useFormField(validators: { valid: (value: string) => boolean; message: string }[]) {
+type OnChangeEvent = React.ChangeEvent<HTMLInputElement>;
+
+export default function useFormField(validators: { ok: (value: string) => boolean; message: string }[]) {
   const [value, setValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string>();
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value), []);
+  const onChange = (e: OnChangeEvent) => setValue(e.target.value);
 
-  const valid = validators.map(({ valid, message }) => (valid(value) ? "" : message));
+  useEffect(() => {
+    for (const validator of validators) {
+      if (!validator.ok(value)) {
+        setErrorMessage(validator.message);
+        return;
+      }
+    }
+    setErrorMessage(undefined);
+  }, [value]);
 
-  const errorMessage = valid.filter((message) => message !== "")[0];
-
-  return { value, onChange, errorMessage };
+  return [value, onChange, errorMessage] as const;
 }
