@@ -17,20 +17,20 @@ instance.interceptors.request.use(
 
     return config;
   },
+
   (error) => Promise.reject(error)
 );
 
 instance.interceptors.response.use(
-  (response) => {
-    const token = response.data.access_token;
+  (response) => response,
 
-    if (token) {
-      localStorage.setItem("access_token", token);
+  (error) => {
+    if (error?.response?.data?.message != null) {
+      return Promise.reject(new Error(error.response.data.message));
+    } else {
+      return Promise.reject(error);
     }
-
-    return response;
-  },
-  (error) => Promise.reject(error)
+  }
 );
 
 export const setAuthToken = (token: string) => {
