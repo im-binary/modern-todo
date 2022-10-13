@@ -60,6 +60,7 @@ export const del = (url: string) => {
 export const patch = (url: string, data: any) => {
   return instance.patch(url, data);
 };
+
 export const head = (url: string) => {
   return instance.head(url);
 };
