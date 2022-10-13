@@ -1,13 +1,13 @@
 import { useCallback } from "react";
 import useFormField from "../hooks/useFormField";
+import { User } from "../types/User";
 import Button from "./Button";
 
-interface User {
-  email: string;
-  password: string;
-}
-
-export default function UserForm() {
+export default function UserForm({
+  handleSubmit,
+}: {
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>, user: User, errorMessage?: string) => void;
+}) {
   const [email, onChangeEmail, emailErrorMessage] = useFormField([
     { ok: (value) => value !== "", message: "이메일을 입력해주세요" },
     { ok: (value) => value.includes("@"), message: "이메일 형식이 올바르지 않습니다" },
@@ -19,18 +19,6 @@ export default function UserForm() {
   ]);
 
   const errorMessage = emailErrorMessage || passwordErrorMessage;
-
-  const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>, { email, password }: User, errorMessage?: string) => {
-      e.preventDefault();
-
-      if (errorMessage == null) {
-        console.log("로그인");
-        console.log(email, password);
-      }
-    },
-    []
-  );
 
   return (
     <form onSubmit={(e) => handleSubmit(e, { email, password }, errorMessage)}>
@@ -46,7 +34,7 @@ export default function UserForm() {
         <p>{passwordErrorMessage}</p>
       </label>
 
-      <Button type='submit'>로그인</Button>
+      <Button type='submit'>제출</Button>
     </form>
   );
 }
