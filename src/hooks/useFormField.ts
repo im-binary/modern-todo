@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 
 type OnChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
-export default function useFormField(validators: { ok: (value: string) => boolean; message: string }[]) {
+interface Validator {
+  ok: (value: string) => boolean;
+  message: string;
+}
+
+export default function useFormField(validators: Validator[]) {
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>();
 
