@@ -1,12 +1,11 @@
-import { useCallback } from "react";
 import useFormField from "../hooks/useFormField";
-import { User } from "../types/User";
+import { User } from "../models/User";
 import Button from "./Button";
 
 export default function UserForm({
-  handleSubmit,
+  onSubmit,
 }: {
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>, user: User, errorMessage?: string) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>, user: User, errorMessage?: string) => void;
 }) {
   const [email, onChangeEmail, emailErrorMessage] = useFormField([
     { ok: (value) => value !== "", message: "이메일을 입력해주세요" },
@@ -21,7 +20,7 @@ export default function UserForm({
   const errorMessage = emailErrorMessage || passwordErrorMessage;
 
   return (
-    <form onSubmit={(e) => handleSubmit(e, { email, password }, errorMessage)}>
+    <form onSubmit={(e) => onSubmit(e, { email, password }, errorMessage)}>
       <label htmlFor='user-email'>
         이메일
         <input type='email' id='user-email' name='user-email' onChange={onChangeEmail} />
