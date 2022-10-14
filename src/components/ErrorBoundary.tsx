@@ -20,9 +20,32 @@ class ErrorBoundary extends Component<Props, State> {
     return { error };
   }
 
+  updatedWithError = false;
+
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({ error });
     console.error("Uncaught error:", error, errorInfo);
+  }
+
+  componentDidMount() {
+    console.log("ErrorBoundary mounted");
+    const { error } = this.state;
+    if (error != null) {
+      this.updatedWithError = true;
+    }
+  }
+
+  componentDidUpdate() {
+    const { error } = this.state;
+    if (error != null && !this.updatedWithError) {
+      this.updatedWithError = true;
+      return;
+    }
+
+    if (error != null) {
+      this.updatedWithError = false;
+      this.setState({ error: undefined });
+    }
   }
 
   render() {
