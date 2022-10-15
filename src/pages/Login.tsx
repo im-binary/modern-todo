@@ -10,8 +10,6 @@ export function Login({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStat
   const navigate = useNavigate();
 
   const handleLogin = useCallback(async (e: React.FormEvent<HTMLFormElement>, { email, password }: User) => {
-    e.preventDefault();
-
     await signIn({ email, password });
 
     setIsLogin(true);

@@ -10,8 +10,6 @@ export function Join({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetState
   const navigate = useNavigate();
 
   const handleJoin = useCallback(async (e: React.FormEvent<HTMLFormElement>, { email, password }: User) => {
-    e.preventDefault();
-
     await join({ email, password });
     await signIn({ email, password });
 

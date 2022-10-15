@@ -20,8 +20,9 @@ export default function UserForm({
   const errorMessage = emailErrorMessage || passwordErrorMessage;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     if (errorMessage != null) {
-      e.preventDefault();
       return;
     }
 
