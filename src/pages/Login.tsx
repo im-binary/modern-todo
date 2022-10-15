@@ -1,26 +1,21 @@
 import Title from "../components/Title";
 import UserForm from "../components/UserForm";
-import Button from "../components/Button";
 import { useCallback } from "react";
 import { User } from "../models/User";
 import { signIn } from "../api/signIn";
 import { useNavigate } from "react-router-dom";
+import LinkButton from "../components/LinkButton";
 
-export default function Login() {
+export function Login({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction<boolean>> }) {
   const navigate = useNavigate();
-  const handleLogin = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>, { email, password }: User, errorMessage?: string) => {
-      e.preventDefault();
 
-      if (errorMessage != null) {
-        return;
-      }
+  const handleLogin = useCallback(async (user: User) => {
+    await signIn(user);
 
-      await signIn({ email, password });
-      navigate("/todo");
-    },
-    []
-  );
+    setIsLogin(true);
+
+    navigate("/todo");
+  }, []);
 
   return (
     <>
@@ -28,7 +23,7 @@ export default function Login() {
 
       <UserForm onSubmit={handleLogin} />
 
-      <Button type='button'>회원가입</Button>
+      <LinkButton to='/signup'>회원가입하러 가기</LinkButton>
     </>
   );
 }
