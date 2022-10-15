@@ -4,7 +4,7 @@ import { createTodos, getTodos } from "../api/todos";
 import Button from "../components/Button";
 import { useTokenContext } from "../contexts/TokenContext";
 
-interface Todos {
+interface TodoItem {
   id: number;
   todo: string;
   isCompleted: boolean;
@@ -13,12 +13,11 @@ interface Todos {
 export default function Todo() {
   const navigate = useNavigate();
   const { isLogin, accessToken } = useTokenContext();
-  const [todoList, setTodoList] = useState<Todos[]>([]);
-  const [todo, setTodo] = useState("");
+  const [todoList, setTodoList] = useState<TodoItem[]>([]);
+  const [content, setContent] = useState("");
 
   const postTodo = async () => {
-    const data = await createTodos(todo, accessToken);
-    console.log("data", data);
+    await createTodos(content, accessToken);
   };
 
   const handleTodoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,7 +37,7 @@ export default function Todo() {
     <>
       <h1>isLogin: {String(isLogin)}</h1>
       <form onSubmit={handleTodoSubmit}>
-        <input type='text' onChange={(e) => setTodo(e.target.value)} />
+        <input type='text' onChange={(e) => setContent(e.target.value)} />
         <Button type='submit'>추가</Button>
       </form>
       {todoList == null ? (
