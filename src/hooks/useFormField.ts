@@ -7,8 +7,8 @@ interface Validator {
   message: string;
 }
 
-export default function useFormField(validators: Validator[]) {
-  const [value, setValue] = useState("");
+export default function useFormField({ initialValue, validators }: { initialValue?: string; validators: Validator[] }) {
+  const [value, setValue] = useState(initialValue ?? "");
   const [errorMessage, setErrorMessage] = useState<string>();
 
   const onChange = (e: OnChangeEvent) => setValue(e.target.value);
@@ -23,5 +23,5 @@ export default function useFormField(validators: Validator[]) {
     setErrorMessage(undefined);
   }, [value, validators]);
 
-  return [value, onChange, errorMessage] as const;
+  return [value, onChange, errorMessage, setValue] as const;
 }
