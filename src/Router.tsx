@@ -5,7 +5,7 @@ import { Login } from "./pages/Login";
 import { TodoPage } from "./pages/TodoPage";
 
 const GuestRoutes = ["Login", "Join"];
-const MemberRoutes = ["TodoList"];
+const MemberRoutes = ["TodoPage"];
 
 export function Router() {
   return (
@@ -14,6 +14,7 @@ export function Router() {
         <Route path='/' element={withAuthGuard(<Login />)} />
         <Route path='/signup' element={withAuthGuard(<Join />)} />
         <Route path='/todo' element={withAuthGuard(<TodoPage />)} />
+        <Route path='*' element={<Redirect to='/' />} />
       </Routes>
     </BrowserRouter>
   );
