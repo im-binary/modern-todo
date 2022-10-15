@@ -16,13 +16,9 @@ export default function Todo() {
   const [todoList, setTodoList] = useState<TodoItem[]>([]);
   const [content, setContent] = useState("");
 
-  const postTodo = async () => {
-    await createTodoItem(content, accessToken);
-  };
-
   const handleTodoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await postTodo();
+    await createTodoItem(content, accessToken);
     navigate(0);
   };
 
