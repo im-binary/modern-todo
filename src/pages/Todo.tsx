@@ -47,8 +47,10 @@ export default function Todo() {
         <ul>
           {todoList.map((item) => (
             <li key={item.id}>
-              <p>{item.todo}</p>
-              <input type='checkbox' checked={item.isCompleted ? true : false} onChange={(e) => console.log(e)} />
+              <label htmlFor={`todo-${item.id}`}>
+                <p>{item.todo}</p>
+                <input id={`todo-${item.id}`} type='checkbox' />
+              </label>
               <Button>삭제</Button>
             </li>
           ))}
