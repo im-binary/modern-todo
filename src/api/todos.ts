@@ -1,6 +1,6 @@
 import { get, post } from "./http";
 
-export const getTodos = async (accessToken: string) => {
+export const getTodoList = async (accessToken: string) => {
   const { data } = await get({
     url: "/todos",
     headers: {
@@ -11,7 +11,7 @@ export const getTodos = async (accessToken: string) => {
   return data;
 };
 
-export const createTodos = async (todo: string, accessToken: string) => {
+export const createTodoItem = async (todo: string, accessToken: string) => {
   const { data } = await post({
     url: "/todos",
     data: { todo },

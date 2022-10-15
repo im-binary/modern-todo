@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createTodos, getTodos } from "../api/todos";
+import { createTodoItem, getTodoList } from "../api/todos";
 import Button from "../components/Button";
 import { useTokenContext } from "../contexts/TokenContext";
 
@@ -17,7 +17,7 @@ export default function Todo() {
   const [content, setContent] = useState("");
 
   const postTodo = async () => {
-    await createTodos(content, accessToken);
+    await createTodoItem(content, accessToken);
   };
 
   const handleTodoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +28,7 @@ export default function Todo() {
 
   useEffect(() => {
     (async () => {
-      const todoList = await getTodos(accessToken);
+      const todoList = await getTodoList(accessToken);
       setTodoList(todoList);
     })();
   }, []);
