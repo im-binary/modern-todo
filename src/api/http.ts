@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
+type AxiosRequestHeaders = AxiosRequestConfig<any>["headers"];
+
 const instance = axios.create({
   baseURL: "https://pre-onboarding-selection-task.shop",
   timeout: 30_000,
@@ -17,15 +19,7 @@ instance.interceptors.response.use(
   }
 );
 
-export const post = ({
-  url,
-  data,
-  headers,
-}: {
-  url: string;
-  data: any;
-  headers?: AxiosRequestConfig<any>["headers"];
-}) => {
+export const post = ({ url, data, headers }: { url: string; data: any; headers?: AxiosRequestHeaders }) => {
   return instance.post(url, data, { headers });
 };
 
@@ -36,7 +30,7 @@ export const get = ({
 }: {
   url: string;
   data?: Record<string, string>;
-  headers?: AxiosRequestConfig<any>["headers"];
+  headers?: AxiosRequestHeaders;
 }) => {
   const qs = new URLSearchParams(data).toString();
   if (qs.length > 0) {
@@ -46,19 +40,11 @@ export const get = ({
   return instance.get(url, { headers });
 };
 
-export const put = ({
-  url,
-  data,
-  headers,
-}: {
-  url: string;
-  data: any;
-  headers: AxiosRequestConfig<any>["headers"];
-}) => {
+export const put = ({ url, data, headers }: { url: string; data: any; headers: AxiosRequestHeaders }) => {
   return instance.put(url, data, { headers });
 };
 
-export const del = ({ url, headers }: { url: string; headers: AxiosRequestConfig<any>["headers"] }) => {
+export const del = ({ url, headers }: { url: string; headers: AxiosRequestHeaders }) => {
   return instance.delete(url, { headers });
 };
 
