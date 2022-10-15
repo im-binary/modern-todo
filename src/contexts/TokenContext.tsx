@@ -12,7 +12,7 @@ const TokenContext = createContext<TokenContextType>({
   setAccessToken: () => {},
 });
 
-const TokenContextProvider = ({ children }: { children: ReactNode }) => {
+export const TokenContextProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string>(localStorage.getItem("access_token") || "");
 
   const value = {
@@ -27,5 +27,3 @@ const TokenContextProvider = ({ children }: { children: ReactNode }) => {
 export const useTokenContext = () => {
   return useContext(TokenContext);
 };
-
-export { TokenContextProvider, TokenContext };
