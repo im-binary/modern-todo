@@ -2,9 +2,25 @@
 
 ## 프로젝트의 실행 방법
 
+https://todo.pongdang.today 로 접속하여 실행합니다.
+
+혹은 아래 command를 이용하여 실행할 수 있습니다.
+
+```
+git clone git@github.com:pongdang/wanted-pre-onboarding-frontend.git
+
+cd wanted-pre-onboarding-frontend
+
+yarn install
+
+yarn start
+
+open http://localhost:3000
+```
+
 ## 데모 영상
 
-## 데모 영상은 배포 링크로 대체 가능하며, 배포 시 가산점이 부여됩니다.
+-
 
 ## 작업한 내용
 
