@@ -4,16 +4,13 @@ import { Join } from "./pages/Join";
 import { Login } from "./pages/Login";
 import { TodoPage } from "./pages/TodoPage";
 
-const GuestRoutes = ["Login", "Join"];
-const MemberRoutes = ["TodoPage"];
-
 export function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={withAuthGuard(<Login />)} />
-        <Route path='/signup' element={withAuthGuard(<Join />)} />
-        <Route path='/todo' element={withAuthGuard(<TodoPage />)} />
+        <Route path='/' element={withAuthGuard("guest", <Login />)} />
+        <Route path='/signup' element={withAuthGuard("guest", <Join />)} />
+        <Route path='/todo' element={withAuthGuard("member", <TodoPage />)} />
         <Route path='*' element={<Redirect to='/' />} />
       </Routes>
     </BrowserRouter>
@@ -28,18 +25,15 @@ function Redirect({ to }: { to: string }) {
 }
 
 // TODO: hocs 디렉토리로 이동하기
-function withAuthGuard(Component: JSX.Element) {
+function withAuthGuard(type: "member" | "guest", Component: JSX.Element) {
   return (() => {
     const { isLogin } = useTokenContext();
-    console.log({ isLogin });
 
-    const { name } = Component.type;
-
-    if (!isLogin && MemberRoutes.includes(name)) {
+    if (!isLogin && type === "member") {
       return <Redirect to='/' />;
     }
 
-    if (isLogin && GuestRoutes.includes(name)) {
+    if (isLogin && type === "guest") {
       return <Redirect to='/todo' />;
     }
 
