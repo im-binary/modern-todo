@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-export default function TodoModifySection({
+export default function TodoModifyForm({
   content,
   setIsModify,
   onChangeContent,

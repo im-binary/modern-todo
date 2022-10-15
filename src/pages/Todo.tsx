@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTodoItem, updateTodoItem, getTodoList, deleteTodoItem } from "../api/todos";
 import Button from "../components/Button";
-import TodoModifySection from "../components/TodoModifySection";
+import TodoModifyForm from "../components/TodoModifyForm";
 import { useTokenContext } from "../contexts/TokenContext";
 import useFormField from "../hooks/useFormField";
 
@@ -89,7 +89,7 @@ export default function Todo() {
           {todoList.map((item) => (
             <li key={item.id}>
               {modifyId === item.id && isModify ? (
-                <TodoModifySection
+                <TodoModifyForm
                   content={content}
                   setIsModify={setIsModify}
                   onChangeContent={onChangeContent}
