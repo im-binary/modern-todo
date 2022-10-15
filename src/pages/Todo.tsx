@@ -1,5 +1,7 @@
-import React from "react";
+import { useTokenContext } from "../contexts/TokenContext";
 
 export default function Todo() {
-  return <h1>Todo</h1>;
+  const { isLogin } = useTokenContext();
+
+  return <h1>isLogin: {String(isLogin)}</h1>;
 }

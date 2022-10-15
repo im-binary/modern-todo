@@ -1,23 +1,26 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { join } from "../api/join";
-import { signIn } from "../api/signIn";
+import { useJoin } from "../hooks/useJoin";
 import LinkButton from "../components/LinkButton";
 import Title from "../components/Title";
 import UserForm from "../components/UserForm";
 import { User } from "../models/User";
+import { useLogin } from "../hooks/useLogin";
 
-export function Join({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction<boolean>> }) {
+export function Join() {
   const navigate = useNavigate();
+  const { join } = useJoin();
+  const { login } = useLogin();
 
-  const handleJoin = useCallback(async (user: User) => {
-    await join(user);
-    await signIn(user);
+  const handleJoin = useCallback(
+    async (user: User) => {
+      await join(user);
+      await login(user);
 
-    setIsLogin(true);
-
-    navigate("/todo");
-  }, []);
+      navigate("/todo");
+    },
+    [join, login, navigate]
+  );
 
   return (
     <>
