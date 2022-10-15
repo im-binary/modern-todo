@@ -22,6 +22,8 @@ export function Router() {
 
 // TODO: components 디렉토리로 이동하기
 function Redirect({ to }: { to: string }) {
+  console.log(`redirect to ${to}`);
+
   return <Navigate replace to={to} />;
 }
 
@@ -29,6 +31,7 @@ function Redirect({ to }: { to: string }) {
 function withAuthGuard(Component: JSX.Element) {
   return (() => {
     const { isLogin } = useTokenContext();
+    console.log({ isLogin });
 
     const { name } = Component.type;
 
