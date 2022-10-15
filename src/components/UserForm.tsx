@@ -20,7 +20,7 @@ export default function UserForm({
   const errorMessage = emailErrorMessage || passwordErrorMessage;
 
   return (
-    <form onSubmit={(e) => onSubmit(e, { email, password }, errorMessage)}>
+    <form onSubmit={(e) => (errorMessage == null ? onSubmit(e, { email, password }) : () => {})}>
       <label htmlFor='user-email'>
         이메일
         <input type='email' id='user-email' name='user-email' onChange={onChangeEmail} />

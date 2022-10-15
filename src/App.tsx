@@ -1,10 +1,20 @@
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "./components/ErrorBoundary";
-import Login from "./pages/Login";
+import { Login } from "./pages/Login";
+import { Join } from "./pages/Join";
 import Todo from "./pages/Todo";
 
 function App() {
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+
+    if (token != null) {
+      setIsLogin(true);
+    }
+  }, [isLogin]);
   return (
     <ErrorBoundary
       // TODO: alret DOM 만들기
@@ -20,6 +30,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Login />} />
+            <Route path='/signup' element={<Join />} />
             <Route path='/todo' element={<Todo />} />
           </Routes>
         </BrowserRouter>

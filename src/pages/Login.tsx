@@ -4,23 +4,17 @@ import Button from "../components/Button";
 import { useCallback } from "react";
 import { User } from "../models/User";
 import { signIn } from "../api/signIn";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Login() {
+export function Login() {
   const navigate = useNavigate();
-  const handleLogin = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>, { email, password }: User, errorMessage?: string) => {
-      e.preventDefault();
 
-      if (errorMessage != null) {
-        return;
-      }
+  const handleLogin = useCallback(async (e: React.FormEvent<HTMLFormElement>, { email, password }: User) => {
+    e.preventDefault();
 
-      await signIn({ email, password });
-      navigate("/todo");
-    },
-    []
-  );
+    await signIn({ email, password });
+    navigate("/todo");
+  }, []);
 
   return (
     <>
@@ -28,7 +22,9 @@ export default function Login() {
 
       <UserForm onSubmit={handleLogin} />
 
-      <Button type='button'>회원가입</Button>
+      <Link to='/signup'>
+        <Button type='button'>회원가입</Button>
+      </Link>
     </>
   );
 }
