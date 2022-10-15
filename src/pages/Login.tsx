@@ -9,8 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 export function Login({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction<boolean>> }) {
   const navigate = useNavigate();
 
-  const handleLogin = useCallback(async (e: React.FormEvent<HTMLFormElement>, { email, password }: User) => {
-    await signIn({ email, password });
+  const handleLogin = useCallback(async (user: User) => {
+    await signIn(user);
 
     setIsLogin(true);
 

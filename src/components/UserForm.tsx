@@ -2,11 +2,7 @@ import useFormField from "../hooks/useFormField";
 import { User } from "../models/User";
 import Button from "./Button";
 
-export default function UserForm({
-  onSubmit,
-}: {
-  onSubmit: (e: React.FormEvent<HTMLFormElement>, user: User, errorMessage?: string) => void;
-}) {
+export default function UserForm({ onSubmit }: { onSubmit: (user: User) => void }) {
   const [email, onChangeEmail, emailErrorMessage] = useFormField([
     { ok: (value) => value !== "", message: "이메일을 입력해주세요" },
     { ok: (value) => value.includes("@"), message: "이메일 형식이 올바르지 않습니다" },
@@ -26,7 +22,7 @@ export default function UserForm({
       return;
     }
 
-    return onSubmit(e, { email, password });
+    return onSubmit({ email, password });
   };
 
   return (

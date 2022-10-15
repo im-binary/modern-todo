@@ -9,9 +9,9 @@ import { User } from "../models/User";
 export function Join({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction<boolean>> }) {
   const navigate = useNavigate();
 
-  const handleJoin = useCallback(async (e: React.FormEvent<HTMLFormElement>, { email, password }: User) => {
-    await join({ email, password });
-    await signIn({ email, password });
+  const handleJoin = useCallback(async (user: User) => {
+    await join(user);
+    await signIn(user);
 
     setIsLogin(true);
 
