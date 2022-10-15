@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useTokenContext } from "./contexts/TokenContext";
 import { Join } from "./pages/Join";
 import { Login } from "./pages/Login";
-import TodoList from "./pages/TodoList";
+import { TodoPage } from "./pages/TodoPage";
 
 const GuestRoutes = ["Login", "Join"];
 const MemberRoutes = ["TodoList"];
@@ -13,7 +13,7 @@ export function Router() {
       <Routes>
         <Route path='/' element={withAuthGuard(<Login />)} />
         <Route path='/signup' element={withAuthGuard(<Join />)} />
-        <Route path='/todo' element={withAuthGuard(<TodoList />)} />
+        <Route path='/todo' element={withAuthGuard(<TodoPage />)} />
       </Routes>
     </BrowserRouter>
   );
