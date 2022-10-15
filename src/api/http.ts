@@ -46,12 +46,20 @@ export const get = ({
   return instance.get(url, { headers });
 };
 
-export const put = (url: string, data: any) => {
-  return instance.put(url, data);
+export const put = ({
+  url,
+  data,
+  headers,
+}: {
+  url: string;
+  data: any;
+  headers: AxiosRequestConfig<any>["headers"];
+}) => {
+  return instance.put(url, data, { headers });
 };
 
-export const del = (url: string) => {
-  return instance.delete(url);
+export const del = ({ url, headers }: { url: string; headers: AxiosRequestConfig<any>["headers"] }) => {
+  return instance.delete(url, { headers });
 };
 
 export const patch = (url: string, data: any) => {
