@@ -36,7 +36,7 @@ function withAuthGuard(Component: JSX.Element) {
     }
 
     if (isLogin && GuestRoutes.includes(name)) {
-      return <Redirect to='/Todo' />;
+      return <Redirect to='/todo' />;
     }
 
     return Component;

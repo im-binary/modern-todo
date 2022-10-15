@@ -26,7 +26,7 @@ export function Join() {
     <>
       <Title>singup Page</Title>
       <UserForm onSubmit={handleJoin} />
-      <LinkButton to='/login'>로그인하러 가기</LinkButton>
+      <LinkButton to='/'>로그인하러 가기</LinkButton>
     </>
   );
 }
