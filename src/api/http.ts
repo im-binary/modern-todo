@@ -41,12 +41,22 @@ export const removeAuthToken = () => {
   delete instance.defaults.headers.common["Authorization"];
 };
 
-export const post = (url: string, data: any) => {
-  return instance.post(url, data);
+export const post = (url: string, data: any, accessToken?: string) => {
+  return instance.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 };
 
-export const get = (url: string) => {
-  return instance.get(url);
+export const get = (url: string, accessToken: string) => {
+  return instance.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 };
 
 export const put = (url: string, data: any) => {
