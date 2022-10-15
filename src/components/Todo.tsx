@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useFormField from "../hooks/useFormField";
-import { TodoItem } from "../pages/TodoList";
+import { TodoItem } from "../pages/TodoPage";
 import Button from "./Button";
 
 export default function Todo({
