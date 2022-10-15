@@ -4,14 +4,6 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import Login from "./pages/Login";
 import Todo from "./pages/Todo";
 
-// function Alert({ error }: { error: Error }) {
-//   useEffect(() => {
-//     alert(error.message);
-//   }, []);
-
-//   return null;
-// }
-
 function App() {
   return (
     <ErrorBoundary
