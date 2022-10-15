@@ -21,7 +21,7 @@ export default function useFormField(validators: Validator[]) {
       }
     }
     setErrorMessage(undefined);
-  }, [value]);
+  }, [value, validators]);
 
   return [value, onChange, errorMessage] as const;
 }
