@@ -31,9 +31,9 @@ function Redirect({ to }: { to: string }) {
 function withAuthGuard(Component: JSX.Element) {
   return (() => {
     const { isLogin } = useTokenContext();
-    console.log({ isLogin });
 
     const { name } = Component.type;
+    console.log(`current Router: ${name} and login is ${isLogin}`);
 
     if (!isLogin && MemberRoutes.includes(name)) {
       return <Redirect to='/' />;
