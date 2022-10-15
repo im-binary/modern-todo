@@ -17,7 +17,7 @@ export default function Todo() {
   const [todo, setTodo] = useState("");
 
   const postTodo = async () => {
-    const data = await createTodos({ todo }, accessToken);
+    const data = await createTodos(todo, accessToken);
     console.log("data", data);
   };
 

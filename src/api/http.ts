@@ -1,25 +1,9 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const instance = axios.create({
   baseURL: "https://pre-onboarding-selection-task.shop",
   timeout: 30_000,
 });
-
-instance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("access_token");
-
-    if (token) {
-      setAuthToken(token);
-    } else {
-      removeAuthToken();
-    }
-
-    return config;
-  },
-
-  (error) => Promise.reject(error)
-);
 
 instance.interceptors.response.use(
   (response) => response,
@@ -33,30 +17,33 @@ instance.interceptors.response.use(
   }
 );
 
-export const setAuthToken = (token: string) => {
-  instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+export const post = ({
+  url,
+  data,
+  headers,
+}: {
+  url: string;
+  data: any;
+  headers?: AxiosRequestConfig<any>["headers"];
+}) => {
+  return instance.post(url, data, { headers });
 };
 
-export const removeAuthToken = () => {
-  delete instance.defaults.headers.common["Authorization"];
-};
+export const get = ({
+  url,
+  data,
+  headers,
+}: {
+  url: string;
+  data?: Record<string, string>;
+  headers?: AxiosRequestConfig<any>["headers"];
+}) => {
+  const qs = new URLSearchParams(data).toString();
+  if (qs.length > 0) {
+    url = `${url}?${qs}`;
+  }
 
-export const post = (url: string, data: any, accessToken?: string) => {
-  return instance.post(url, data, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-};
-
-export const get = (url: string, accessToken: string) => {
-  return instance.get(url, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+  return instance.get(url, { headers });
 };
 
 export const put = (url: string, data: any) => {
