@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
-
   const handleLogin = useCallback(
     async (e: React.FormEvent<HTMLFormElement>, { email, password }: User, errorMessage?: string) => {
       e.preventDefault();
@@ -17,12 +16,8 @@ export default function Login() {
         return;
       }
 
-      try {
-        await signIn({ email, password });
-        navigate("/todo");
-      } catch (err: any) {
-        alert(err.message);
-      }
+      await signIn({ email, password });
+      navigate("/todo");
     },
     []
   );
