@@ -45,7 +45,6 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@3.2.4",
   "devDependencies": {
     "@testing-library/dom": "^8.19.0",
     "@types/eslint": "^8",

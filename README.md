@@ -1,23 +1,15 @@
 # wanted-pre-onboarding-frontend
 
-## initializing project with typescript
+## 프로젝트의 실행 방법
 
-```
-yarn create react-app --template typescript .
+## 데모 영상
 
-yarn set version stable
+## 데모 영상은 배포 링크로 대체 가능하며, 배포 시 가산점이 부여됩니다.
 
-yarn plugin import typescript
+## 작업한 내용
 
-yarn dlx @yarnpkg/sdks vscode
+### 1. Context API를 활용한 라우터 가드 처리
 
-yarn add -D @babel/plugin-syntax-flow  @babel/plugin-transform-react-jsx @testing-library/dom
+### 2. Suspense 를 이용한 선언적인 컴포넌트 사용 (이를 위한 useFetch 구현)
 
-yarn add -D @babel/core
-
-yarn add -D @types/testing-library__jest-dom
-
-yarn
-
-yarn start
-```
+### 3. ErrorBoundary 를 이용한 선언적인 에러 처리 (event 에러를 잡기위한 useEventErrorHandle 구현)
