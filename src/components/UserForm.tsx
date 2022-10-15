@@ -19,8 +19,17 @@ export default function UserForm({
 
   const errorMessage = emailErrorMessage || passwordErrorMessage;
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (errorMessage != null) {
+      e.preventDefault();
+      return;
+    }
+
+    return onSubmit(e, { email, password });
+  };
+
   return (
-    <form onSubmit={(e) => (errorMessage == null ? onSubmit(e, { email, password }) : () => {})}>
+    <form onSubmit={handleSubmit}>
       <label htmlFor='user-email'>
         이메일
         <input type='email' id='user-email' name='user-email' onChange={onChangeEmail} />
