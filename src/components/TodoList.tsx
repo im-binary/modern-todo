@@ -37,7 +37,9 @@ export default function TodoList() {
   return (
     <ul>
       {todoList.map((item) => (
-        <Todo {...item} updateTodo={updateTodo} removeTodo={removeTodo} checkComplete={checkComplete} />
+        <li key={item.id}>
+          <Todo {...item} updateTodo={updateTodo} removeTodo={removeTodo} checkComplete={checkComplete} />
+        </li>
       ))}
     </ul>
   );

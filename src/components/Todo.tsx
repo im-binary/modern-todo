@@ -36,23 +36,23 @@ export default function Todo({
 
   if (isModify) {
     return (
-      <li key={id}>
+      <>
         <input type='text' value={value} onChange={onChangeContent} />
         {errorMessage && <p>{errorMessage}</p>}
         <Button onClick={handleUpdateTodo}>등록</Button>
         <Button onClick={() => setIsModify(false)}>취소</Button>
-      </li>
+      </>
     );
   }
 
   return (
-    <li key={id}>
+    <>
       <label htmlFor={`todo-${id}`}>
         <input id={`todo-${id}`} type='checkbox' checked={isCompleted} onChange={() => checkComplete(id)} />
         <span>{content}</span>
       </label>
       <Button onClick={() => setIsModify(true)}>수정</Button>
       <Button onClick={() => removeTodo(id)}>삭제</Button>
-    </li>
+    </>
   );
 }
