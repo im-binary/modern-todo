@@ -1,65 +1,65 @@
 import { Component, ErrorInfo, ReactNode } from "react";
+import useEventErrorHandle from "../hooks/useEventErrorHandle";
+
+interface RenderFallbackProps {
+  error: Error;
+  reset: () => void;
+  children?: ReactNode;
+}
+type RenderFallback = ({ error, reset, children }: RenderFallbackProps) => ReactNode;
 
 interface Props {
   children?: ReactNode;
-  fallback: ({ error }: { error: Error }) => ReactNode;
+  renderFallback: RenderFallback;
 }
 
 interface State {
   error?: Error;
 }
 
-class ErrorBoundary extends Component<Props, State> {
+export class OriginalErrorBoundary extends Component<Props, State> {
+  static getDerivedStateFromError(error: Error): State {
+    return { error };
+  }
+
   constructor(props: Props) {
     super(props);
     this.state = { error: undefined };
   }
 
-  static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render will show the fallback UI.
-    return { error };
-  }
-
-  updatedWithError = false;
+  resetErrorBoundary = () => {
+    this.setState({ error: undefined });
+  };
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({ error });
-    console.error("Uncaught error:", error, errorInfo);
-  }
-
-  componentDidMount() {
-    console.log("ErrorBoundary mounted");
-    const { error } = this.state;
-    if (error != null) {
-      this.updatedWithError = true;
-    }
-  }
-
-  componentDidUpdate() {
-    const { error } = this.state;
-    if (error != null && !this.updatedWithError) {
-      this.updatedWithError = true;
-      return;
-    }
-
-    if (error != null) {
-      this.updatedWithError = false;
-      this.setState({ error: undefined });
-    }
   }
 
   render() {
-    if (this.state.error) {
-      const fallbackUI = this.props.fallback({ error: this.state.error });
-      if (fallbackUI == null) {
-        return this.props.children;
-      } else {
-        return fallbackUI;
-      }
+    const { error } = this.state;
+    const { renderFallback, children } = this.props;
+
+    if (error != null) {
+      return renderFallback({ error, reset: this.resetErrorBoundary });
     }
 
-    return this.props.children;
+    return children;
   }
 }
 
-export default ErrorBoundary;
+function EventErrorHandle({ children }: { children: ReactNode }) {
+  useEventErrorHandle();
+
+  return <>{children}</>;
+}
+
+export function ErrorBoundary({ children, ...props }: { children?: ReactNode; renderFallback: RenderFallback }) {
+  return (
+    <OriginalErrorBoundary
+      {...props}
+      renderFallback={({ error, reset }) => props.renderFallback({ error, children, reset })}
+    >
+      <EventErrorHandle>{children}</EventErrorHandle>
+    </OriginalErrorBoundary>
+  );
+}
