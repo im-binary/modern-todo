@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { User } from "../models/User";
 import { useNavigate } from "react-router-dom";
 import LinkButton from "../components/LinkButton";
-import { useLogin } from "../hooks/useLogin";
+import { useLogin } from "../hooks/user";
 import styled from "@emotion/styled";
 
 export function Login() {

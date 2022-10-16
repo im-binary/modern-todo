@@ -1,4 +1,5 @@
 import { signIn } from "../api/signIn";
+import { join } from "../api/join";
 import { useTokenContext } from "../contexts/TokenContext";
 import { User } from "../models/User";
 
@@ -9,7 +10,17 @@ export function useLogin() {
     login: async (user: User) => {
       const { access_token } = await signIn(user);
 
-      localStorage.setItem("access_token", access_token);
+      setAccessToken(access_token);
+    },
+  } as const;
+}
+
+export function useJoin() {
+  const { setAccessToken } = useTokenContext();
+
+  return {
+    join: async (user: User) => {
+      const { access_token } = await join(user);
 
       setAccessToken(access_token);
     },
