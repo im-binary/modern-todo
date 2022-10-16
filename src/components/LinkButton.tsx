@@ -1,4 +1,5 @@
-import React from "react";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
@@ -10,7 +11,17 @@ interface Props {
 
 export default function LinkButton({ to, buttonType = "button", children }: Props) {
   return (
-    <Link to={to}>
+    <Link
+      to={to}
+      css={css`
+        display: block;
+        text-decoration-color: #dc602a;
+        button {
+          background: transparent;
+          color: #dc602a;
+        }
+      `}
+    >
       <Button type={buttonType}>{children}</Button>
     </Link>
   );

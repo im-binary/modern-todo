@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import useFormField from "../hooks/useFormField";
 import { User } from "../models/User";
 import Button from "./Button";
@@ -30,20 +32,69 @@ export default function UserForm({ onSubmit }: { onSubmit: (user: User) => void 
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} css={userFormContainer}>
       <label htmlFor='user-email'>
-        이메일
-        <input type='email' id='user-email' name='user-email' onChange={onChangeEmail} />
+        <p>이메일</p>
+        <input type='email' id='user-email' name='user-email' onChange={onChangeEmail} autoFocus />
         <p>{emailErrorMessage}</p>
       </label>
 
       <label htmlFor='user-password'>
-        비밀번호
+        <p>비밀번호</p>
         <input type='password' id='user-password' name='user-password' onChange={onChangePassword} />
         <p>{passwordErrorMessage}</p>
       </label>
 
-      <Button type='submit'>제출</Button>
+      <Button type='submit' disabled={errorMessage != null} className='submit-button'>
+        제출
+      </Button>
     </form>
   );
 }
+
+const userFormContainer = css`
+  padding: 20px;
+  width: 300px;
+
+  label {
+    display: block;
+
+    p:first-of-type {
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+
+    input {
+      border-width: 0px 0px 1px 0px;
+      width: 100%;
+      height: 30px;
+      padding-left: 8px;
+    }
+
+    p:nth-of-type(2) {
+      text-indent: 1rem;
+      color: #f53b3b;
+      height: 16px;
+      margin-bottom: 0;
+      font-size: 1.3rem;
+    }
+  }
+
+  button.submit-button {
+    padding: 16px;
+    margin-top: 30px;
+    /* border: 0;
+    border-radius: 20px;
+    background-color: #dc602a;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 1.2px; */
+  }
+
+  button:disabled.submit-button {
+    background-color: #c1c1c199;
+    cursor: not-allowed;
+    font-weight: 500;
+  }
+`;

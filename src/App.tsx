@@ -1,17 +1,20 @@
 import { TokenContextProvider } from "./contexts/TokenContext";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Router } from "./Router";
+import ErrorAlert from "./components/ErrorAlert";
+import "./App.css";
 
 function App() {
+  const [isModalOpen] = useState(true);
+
   return (
     <ErrorBoundary
       // TODO: alret DOM 만들기
       renderFallback={({ error, children, reset }) => (
         <>
-          <>{error.message}</>
-          <>{children}</>
-          <button onClick={reset}>확인</button>
+          <ErrorAlert isModalOpen={isModalOpen} errorMessage={error.message} reset={reset} />
+          {children}
         </>
       )}
     >
