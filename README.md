@@ -27,19 +27,18 @@ open http://localhost:3000
 
 ## 데모 영상
 
-| 데모 | 영상 |
-|:---:|:---:|
-|로그인 / 회원가입 유효성|회원가입 후 로그인 처리|
-|![유효성](https://user-images.githubusercontent.com/76990149/196036958-95761f02-7880-46c9-be2d-ff48c3f87d87.gif)|![회원가입후로그인](https://user-images.githubusercontent.com/76990149/196036973-52d6fb57-3049-4dc3-82f5-ffc7821ad211.gif)|
-|로그인 상태일 때 `/`, `/signup` 페이지 접근 막기|로그인 상태가 아닐 때 `/todo` 페이지 접근 막기|
-|![리다이렉트(todo)](https://user-images.githubusercontent.com/76990149/196037056-c7d9f1cd-e7e4-4a74-936e-f0874c897662.gif)|![리다이렉트(login)](https://user-images.githubusercontent.com/76990149/196037060-7feb274f-27b4-469e-848b-d5f7d84274c0.gif)|
-|todo 등록 / 수정|todo 삭제 / 완료처리|
-|![todo등록:수정](https://user-images.githubusercontent.com/76990149/196037226-fc72de75-ccd1-4fee-82e2-cc87d8795f66.gif)|![todo삭제:완료](https://user-images.githubusercontent.com/76990149/196037232-fad3976b-5edc-4976-8715-04959a1da7c2.gif)|
+|                                                               데모                                                               |                                                                 영상                                                                  |
+| :------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: |
+|                                                     로그인 / 회원가입 유효성                                                     |                                                        회원가입 후 로그인 처리                                                        |
+|       ![유효성](https://user-images.githubusercontent.com/76990149/196036958-95761f02-7880-46c9-be2d-ff48c3f87d87.gif)       | ![회원가입후로그인](https://user-images.githubusercontent.com/76990149/196036973-52d6fb57-3049-4dc3-82f5-ffc7821ad211.gif) |
+|                                         로그인 상태일 때 `/`, `/signup` 페이지 접근 막기                                         |                                            로그인 상태가 아닐 때 `/todo` 페이지 접근 막기                                             |
+| ![리다이렉트(todo)](https://user-images.githubusercontent.com/76990149/196037056-c7d9f1cd-e7e4-4a74-936e-f0874c897662.gif) |   ![리다이렉트(login)](https://user-images.githubusercontent.com/76990149/196037060-7feb274f-27b4-469e-848b-d5f7d84274c0.gif)   |
+|                                                         todo 등록 / 수정                                                         |                                                         todo 삭제 / 완료처리                                                          |
+|  ![todo등록:수정](https://user-images.githubusercontent.com/76990149/196037226-fc72de75-ccd1-4fee-82e2-cc87d8795f66.gif)  |     ![todo삭제:완료](https://user-images.githubusercontent.com/76990149/196037232-fad3976b-5edc-4976-8715-04959a1da7c2.gif)     |
 
-|todo 등록, 수정, 완료, 삭제|
-|:---:|
-|![마지막](https://user-images.githubusercontent.com/76990149/196037414-db280536-c120-47b8-8b1a-ad3b27af6dad.gif)|
-
+|                                             todo 등록, 수정, 완료, 삭제                                              |
+| :------------------------------------------------------------------------------------------------------------------: |
+| ![마지막](https://user-images.githubusercontent.com/76990149/196037414-db280536-c120-47b8-8b1a-ad3b27af6dad.gif) |
 
 ## 작업한 내용
 
@@ -47,7 +46,7 @@ open http://localhost:3000
 
 **Context API**로 유저의 로그인 상태를 전역에서 관리할 수 있도록 하였고 상태에 따라 접근할 수 있는 라우터를 처리했습니다.
 
-- [HoC로 작성된 함수](https://github.com/pongdang/wanted-pre-onboarding-frontend/blob/main/src/Router.tsx#L9-L16)에서 접근 대상에 따른 페이지의 타입(`member | guest`)을 명시하여 isLogin 상태와 비교합니다.
+- [HoC로 작성된 함수](https://github.com/pongdang/wanted-pre-onboarding-frontend/blob/main/src/Router.tsx#L28-L42)에서 접근 대상에 따른 페이지의 타입(`member | guest`)을 명시하여 isLogin 상태와 비교합니다.
 - 로그인하지 않은 상태(`isLogin === false`)에서 member들만 접근할 수 있는 페이지(`/todo`)를 접근하려 한다면 로그인 페이지(`/`) 로 리다이렉트 시켜줍니다.
 - 로그인한 상태(`isLogin === true`)에서 guest들만 접근할 수 있는 페이지(`/`, `/signup`)을 접근하려 한자면 투두 페이지(`/todo`) 로 리다이렉트 시켜줍니다.
 

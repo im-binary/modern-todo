@@ -2,6 +2,15 @@ import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button } from './Button';
 
+const converKindMessage = (message: string) => {
+  switch (message) {
+    case `Unauthorized`:
+      return `비밀번호가 틀렸어요.\n다시 입력해주세요`;
+  }
+
+  return message;
+};
+
 export function ErrorAlert({
   errorMessage,
   reset,
@@ -12,7 +21,7 @@ export function ErrorAlert({
   return (
     <Modal onClick={reset}>
       <Section onClick={(e) => e.stopPropagation()}>
-        <Message>{errorMessage}</Message>
+        <Message>{converKindMessage(errorMessage)}</Message>
         <ErrorResetButton onClick={reset}>확인</ErrorResetButton>
       </Section>
     </Modal>
@@ -46,6 +55,7 @@ const Message = styled.p`
   text-align: center;
   font-size: 1.6rem;
   font-weight: bold;
+  white-space: pre-wrap;
 `;
 
 const Section = styled.section`
