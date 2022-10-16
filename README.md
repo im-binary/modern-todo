@@ -27,33 +27,17 @@ open http://localhost:3000
 
 ## 데모 영상
 
-- 로그인 / 회원가입 유효성
+| 데모 | 영상 |
+|:---:|:---:|
+|로그인 / 회원가입 유효성|회원가입 후 로그인 처리|
+|![유효성](https://user-images.githubusercontent.com/76990149/196036958-95761f02-7880-46c9-be2d-ff48c3f87d87.gif)|![회원가입후로그인](https://user-images.githubusercontent.com/76990149/196036973-52d6fb57-3049-4dc3-82f5-ffc7821ad211.gif)|
+|로그인 상태일 때 `/`, `/signup` 페이지 접근 막기|로그인 상태가 아닐 때 `/todo` 페이지 접근 막기|
+|![리다이렉트(todo)](https://user-images.githubusercontent.com/76990149/196037056-c7d9f1cd-e7e4-4a74-936e-f0874c897662.gif)|![리다이렉트(login)](https://user-images.githubusercontent.com/76990149/196037060-7feb274f-27b4-469e-848b-d5f7d84274c0.gif)|
+|todo 등록 / 수정|todo 삭제 / 완료처리|
+|![todo등록:수정](https://user-images.githubusercontent.com/76990149/196037226-fc72de75-ccd1-4fee-82e2-cc87d8795f66.gif)|![todo삭제:완료](https://user-images.githubusercontent.com/76990149/196037232-fad3976b-5edc-4976-8715-04959a1da7c2.gif)|
+|todo 등록, 수정, 완료, 삭제||
+|![마지막](https://user-images.githubusercontent.com/76990149/196037414-db280536-c120-47b8-8b1a-ad3b27af6dad.gif)||
 
-  ![로그인-회원가입-유효성](https://user-images.githubusercontent.com/76990149/196020585-e21e581d-823d-4c1e-8643-17d5ec8741b5.gif)
-
-- 회원가입 에러 처리
-
-  ![회원가입-에러-처리](https://user-images.githubusercontent.com/76990149/196020619-e4788a77-dee3-4816-9b22-657c955a7ff5.gif)
-
-- 로그인 상태일 때 `/`, `/signup` 페이지 접근 막기
-
-  ![로그인-경로-막기](https://user-images.githubusercontent.com/76990149/196020672-45375344-5a28-44d9-a33c-7612bf81f16a.gif)
-
-- 로그인하지 않고 `/todo` 페이지 접근 막기
-
-  ![todo-경로-막기](https://user-images.githubusercontent.com/76990149/196020675-c716cb79-84ae-4851-90f5-2a6b7cb20e76.gif)
-
-- 회원 가입 후 로그인 처리
-
-  ![회원가입후로그인](https://user-images.githubusercontent.com/76990149/196020722-481c1a97-2973-47bd-a5f8-c01fbdf5fc61.gif)
-
-- todo 등록 / 수정
-
-  ![todo-등록-수정](https://user-images.githubusercontent.com/76990149/196020761-0dad5b57-93bd-4882-b135-b39e2bfbe13d.gif)
-
-- todo 완료 처리 / 삭제
-
-  ![todo-완료-삭제](https://user-images.githubusercontent.com/76990149/196020777-94912e90-0902-470b-aba5-1a1ab1376e0b.gif)
 
 ## 작업한 내용
 
