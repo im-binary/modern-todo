@@ -75,6 +75,7 @@ open http://localhost:3000
 
 - [Suspense의 원리](https://dev.to/charlesstover/react-suspense-with-the-fetch-api-374j)에 대해 찾아보고, 이를 참고하여 라이브러리(react-query, Relay) 없이 사용할 수 있도록 필요한 부분만 [useFetch](https://github.com/pongdang/wanted-pre-onboarding-frontend/blob/main/src/hooks/useFetch.tsx#L11-L46)로 재구현하였습니다.
 - 로딩 중일 때는 Promise를 throw 하여 Suspense 에서 fallback 엘리먼트를 렌더링하도록 합니다.
+- useFetch 에서 invalidate 함수를 얻어서 특정 쿼리(fetchTodoList)를 다시 refetch 할 수 있습니다.
 
 ### 3. ErrorBoundary 를 이용한 선언적인 에러 처리 (event 에러를 잡기위한 useEventErrorHandle 구현)
 
