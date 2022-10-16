@@ -29,5 +29,13 @@ export function useFormField({
     setErrorMessage(undefined);
   }, [value, validators]);
 
-  return [value, onChange, errorMessage, setValue] as const;
+  const clearValue = () => setValue('');
+
+  return {
+    value,
+    onChange,
+    errorMessage,
+    setValue,
+    clearValue,
+  } as const;
 }

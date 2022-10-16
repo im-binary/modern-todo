@@ -23,7 +23,7 @@ export function Todo({
 }) {
   const [isModify, setIsModify] = useState(false);
 
-  const [value, onChangeContent, errorMessage] = useFormField({
+  const { value, onChange, errorMessage } = useFormField({
     initialValue: content,
     validators: [
       { ok: (value) => value !== '', message: '빈 칸으로 수정할 수는 없어요' },
@@ -42,7 +42,7 @@ export function Todo({
   if (isModify) {
     return (
       <>
-        <input type="text" value={value} onChange={onChangeContent} />
+        <input type="text" value={value} onChange={onChange} />
         <Button
           onClick={handleUpdateTodo}
           css={css`

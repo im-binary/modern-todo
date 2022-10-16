@@ -4,7 +4,11 @@ import { User } from '../models/User';
 import { Button } from './Button';
 
 export function UserForm({ onSubmit }: { onSubmit: (user: User) => void }) {
-  const [email, onChangeEmail, emailErrorMessage] = useFormField({
+  const {
+    value: email,
+    onChange: onChangeEmail,
+    errorMessage: emailErrorMessage,
+  } = useFormField({
     validators: [
       { ok: (value) => value !== '', message: '이메일을 입력해주세요' },
       {
@@ -14,7 +18,11 @@ export function UserForm({ onSubmit }: { onSubmit: (user: User) => void }) {
     ],
   });
 
-  const [password, onChangePassword, passwordErrorMessage] = useFormField({
+  const {
+    value: password,
+    onChange: onChangePassword,
+    errorMessage: passwordErrorMessage,
+  } = useFormField({
     validators: [
       { ok: (value) => value !== '', message: '비밀번호를 입력해주세요' },
       {
