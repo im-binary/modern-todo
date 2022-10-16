@@ -33,7 +33,17 @@ export default function TodoList() {
   };
 
   if (todoList.length === 0) {
-    return <p>아직 등록된 할일이 없습니다.</p>;
+    return (
+      <p
+        css={css`
+          text-align: center;
+          font-size: 1.6rem;
+          font-weight: bold;
+        `}
+      >
+        아직 등록된 할일이 없습니다.
+      </p>
+    );
   }
 
   return (

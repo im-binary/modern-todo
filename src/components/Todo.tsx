@@ -24,7 +24,7 @@ export default function Todo({
 
   const [value, onChangeContent, errorMessage] = useFormField({
     initialValue: content,
-    validators: [{ ok: (value) => value !== "", message: "오늘의 할 일을 입력해주세요!" }],
+    validators: [{ ok: (value) => value !== "", message: "빈 칸으로 수정할 수는 없어요" }],
   });
 
   const handleUpdateTodo = async () => {
@@ -40,9 +40,35 @@ export default function Todo({
     return (
       <>
         <input type='text' value={value} onChange={onChangeContent} />
-        {errorMessage && <p>{errorMessage}</p>}
-        <Button onClick={handleUpdateTodo}>등록</Button>
-        <Button onClick={() => setIsModify(false)}>취소</Button>
+        <Button
+          onClick={handleUpdateTodo}
+          css={css`
+            padding: 4px;
+            border-radius: 10px;
+          `}
+        >
+          등록
+        </Button>
+        <Button
+          onClick={() => setIsModify(false)}
+          css={css`
+            padding: 4px;
+            border-radius: 10px;
+          `}
+        >
+          취소
+        </Button>
+        <p
+          css={css`
+            height: 16px;
+            margin: 0;
+            font-size: 1.3rem;
+            color: #f53b3b;
+            text-align: center;
+          `}
+        >
+          {errorMessage}
+        </p>
       </>
     );
   }

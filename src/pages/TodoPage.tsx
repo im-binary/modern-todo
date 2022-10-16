@@ -35,7 +35,6 @@ export function TodoPage() {
 
     navigate(0);
   };
-  console.log(contentErrorMessage);
 
   return (
     <main css={todoPageContainer}>
