@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { useFormField } from "../hooks/useFormField";
-import { TodoItem } from "../pages/TodoPage";
+import { TodoItem } from "../models/TodoItem";
 import { Button } from "./Button";
 
 export function Todo({

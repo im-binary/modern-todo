@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteTodoItem, getTodoList, updateTodoItem } from "../api/todos";
 import { useTokenContext } from "../contexts/TokenContext";
 import { useFetch } from "../hooks/useFetch";
-import { TodoItem } from "../pages/TodoPage";
+import { TodoItem } from "../models/TodoItem";
 import { Todo } from "./Todo";
 
 export function TodoList() {

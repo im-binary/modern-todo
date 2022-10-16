@@ -6,6 +6,7 @@ export interface RenderFallbackProps {
   reset: () => void;
   children?: ReactNode;
 }
+
 type RenderFallback = ({ error, reset, children }: RenderFallbackProps) => ReactNode;
 
 interface Props {

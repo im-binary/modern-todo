@@ -4,13 +4,6 @@ import styled from "@emotion/styled";
 import { Suspense } from "react";
 import { Title, TodoForm, TodoList } from "../components";
 
-export interface TodoItem {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-  userId: number;
-}
-
 export function TodoPage() {
   return (
     <Main>
