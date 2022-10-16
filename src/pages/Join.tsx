@@ -1,11 +1,11 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useJoin } from "../hooks/useJoin";
+import { useJoin } from "../hooks/user";
 import LinkButton from "../components/LinkButton";
 import Title from "../components/Title";
 import UserForm from "../components/UserForm";
 import { User } from "../models/User";
-import { useLogin } from "../hooks/useLogin";
+import { useLogin } from "../hooks/user";
 import styled from "@emotion/styled";
 
 export function Join() {
