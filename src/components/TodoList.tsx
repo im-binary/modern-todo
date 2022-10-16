@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
-import { deleteTodoItem, getTodoList, updateTodoItem } from '../api/todos';
+import { deleteTodoItem, updateTodoItem } from '../api/todos';
 import { useTokenContext } from '../contexts/TokenContext';
-import { useFetch } from '../hooks/useFetch';
 import { TodoItem } from '../models/TodoItem';
 import { Todo } from './Todo';
 
-export function TodoList() {
-  const navigate = useNavigate();
+export function TodoList({
+  todoList,
+  invalidate,
+}: {
+  todoList: TodoItem[];
+  invalidate: () => void;
+}) {
   const { accessToken } = useTokenContext();
-  const { data: todoList } = useFetch<TodoItem[]>(['getTodoList'], () =>
-    getTodoList(accessToken)
-  );
 
   const updateTodo = async ({
     id,
@@ -21,12 +21,12 @@ export function TodoList() {
     todo,
   }: Omit<TodoItem, 'userId'>) => {
     await updateTodoItem(id, todo, isCompleted, accessToken);
-    navigate(0);
+    invalidate();
   };
 
   const removeTodo = async (id: number) => {
     await deleteTodoItem(id, accessToken);
-    navigate(0);
+    invalidate();
   };
 
   const checkComplete = async (id: number) => {
@@ -36,7 +36,7 @@ export function TodoList() {
     }
 
     await updateTodoItem(id, todoItem.todo, !todoItem.isCompleted, accessToken);
-    navigate(0);
+    invalidate();
   };
 
   if (todoList.length === 0) {

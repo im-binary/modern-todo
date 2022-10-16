@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface FetchCache {
   keys: unknown[];
   promised?: Promise<void>;
@@ -10,10 +12,13 @@ const fetchClient = new Map<string, FetchCache>();
 
 // @see https://dev.to/charlesstover/react-suspense-with-the-fetch-api-374j
 export function useFetch<T>(
-  keys: unknown[],
+  _keys: unknown[],
   promiseFn: () => Promise<T>,
   client: Map<string, FetchCache> = fetchClient
-): { data: T } {
+): { data: T; invalidate: () => void } {
+  const [invalidateKey, setInvalidateKey] = useState<unknown>();
+  const keys = [..._keys, invalidateKey];
+
   const { rejected, resolved, promised } = client.get(String(keys)) || {};
 
   if (rejected != null) {
@@ -21,7 +26,12 @@ export function useFetch<T>(
   }
 
   if (resolved != null) {
-    return { data: resolved as T };
+    return {
+      data: resolved as T,
+      invalidate: (key?: unknown) => {
+        setInvalidateKey(key ?? Date.now());
+      },
+    };
   }
 
   if (promised != null) {

@@ -1,22 +1,28 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createTodoItem } from '../api/todos';
 import { useTokenContext } from '../contexts/TokenContext';
 import { useFormField } from '../hooks/useFormField';
 import { Button } from './Button';
 
-export function TodoForm() {
-  const navigate = useNavigate();
+export function TodoForm({ invalidate }: { invalidate: () => void }) {
   const { accessToken } = useTokenContext();
-  const [content, onChangeContent, contentErrorMessage] = useFormField({
+  const {
+    value: content,
+    onChange,
+    errorMessage,
+    clearValue,
+  } = useFormField({
     validators: [
-      { ok: (value) => value !== '', message: '오늘의 할 일을 입력해주세요!' },
+      {
+        ok: (value) => value !== '',
+        message: '오늘의 할 일을 입력해주세요!',
+      },
     ],
   });
 
   const handleTodoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    if (contentErrorMessage != null) {
+    if (errorMessage != null) {
       return;
     }
 
@@ -24,16 +30,17 @@ export function TodoForm() {
 
     await createTodoItem(content, accessToken);
 
-    navigate(0);
+    invalidate();
+    clearValue();
   };
 
   return (
     <Form onSubmit={handleTodoSubmit}>
-      <Input type="text" onChange={onChangeContent} />
-      <SubmitButton type="submit" disabled={contentErrorMessage != null}>
+      <Input type="text" onChange={onChange} value={content} />
+      <SubmitButton type="submit" disabled={errorMessage != null}>
         추가
       </SubmitButton>
-      <ErrorMessage>{contentErrorMessage}</ErrorMessage>
+      <ErrorMessage>{errorMessage}</ErrorMessage>
     </Form>
   );
 }
