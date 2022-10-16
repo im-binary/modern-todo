@@ -17,6 +17,7 @@ interface State {
   error?: Error;
 }
 
+// NOTE: ErrorBoundary 는 클래스 컴포넌트로만 작성할 수 있어 부득이하게 클래스 컴포넌트를 이용합니다.
 export class OriginalErrorBoundary extends Component<Props, State> {
   static getDerivedStateFromError(error: Error): State {
     return { error };

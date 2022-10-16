@@ -61,21 +61,25 @@ open http://localhost:3000
 
 ## 작업한 내용
 
-### 1. Context API를 활용한 라우터 가드 처리
+### 1. Context API를 활용한 라우터 가드 처리 (with HoC)
 
-context API로 isLogin 이라는 상태를 만들어 유저의 로그인 상태를 전역에서 관리할 수 있었습니다. 이를 이용하여 로그인 상태에 따라 접근할 수 있는 라우터를 처리했습니다.
+**Context API**로 유저의 로그인 상태를 전역에서 관리할 수 있도록 하였고 상태에 따라 접근할 수 있는 라우터를 처리했습니다.
 
-- 각 페이지마다 접근할 수 있는 유저의 타입들(member | guest)을 명시하여 isLogin 상태와 비교합니다.
-- 로그인하지 않은 상태(isLogin === false)에서 member들만 접근할 수 있는 페이지(`/todo`)를 접근하려 한다면, react-router-dom 이 제공하는 `Navigate` 컴포넌트로 로그인 페이지(`/`) 로 리다이렉트 시켜줍니다.
-- 로그인한 상태(isLogin === true)에서 guset들만 접근할 수 있는 페이지(`/`, `/signup`)을 접근하려 한자면, react-router-dom 이 제공하는 `Navigate` 컴포넌트로 투두 페이지(`/todo`) 로 리다이렉트 시켜줍니다.
+- [HoC로 작성된 함수](https://github.com/pongdang/wanted-pre-onboarding-frontend/blob/main/src/Router.tsx#L9-L16)에서 접근 대상에 따른 페이지의 타입(`member | guest`)을 명시하여 isLogin 상태와 비교합니다.
+- 로그인하지 않은 상태(`isLogin === false`)에서 member들만 접근할 수 있는 페이지(`/todo`)를 접근하려 한다면 로그인 페이지(`/`) 로 리다이렉트 시켜줍니다.
+- 로그인한 상태(`isLogin === true`)에서 guest들만 접근할 수 있는 페이지(`/`, `/signup`)을 접근하려 한자면 투두 페이지(`/todo`) 로 리다이렉트 시켜줍니다.
 
-### 2. Suspense 를 이용한 선언적인 컴포넌트 사용 (이를 위한 useFetch 구현)
+### 2. Suspense 를 이용한 선언적인 비동기 함수 처리의 로딩처리
 
-Suspense는 error 타입이 promised 일때 fallback props로 넘겨준 엘리먼트를 화면에 렌더링합니다. 이러한 점을 이용하여 데이터에 요청을 보낼 때 promise 함수의 상태에 따라 일부러 에러를 발생시켜 fallback 엘리먼트가 보이도록 했습니다.
+**Suspense**를 활용하면 비동기 함수 호출의 상태에 따라 UI 를 선언적으로 보여줄 수 있습니다.
+
+- [Suspense의 원리](https://dev.to/charlesstover/react-suspense-with-the-fetch-api-374j)에 대해 찾아보고, 이를 참고하여 라이브러리(react-query, Relay) 없이 사용할 수 있도록 필요한 부분만 [useFetch](https://github.com/pongdang/wanted-pre-onboarding-frontend/blob/main/src/hooks/useFetch.tsx#L11-L46)로 재구현하였습니다.
+- 로딩 중일 때는 Promise를 throw 하여 Suspense 에서 fallback 엘리먼트를 렌더링하도록 합니다.
 
 ### 3. ErrorBoundary 를 이용한 선언적인 에러 처리 (event 에러를 잡기위한 useEventErrorHandle 구현)
 
-ErrorBoundary 클래스 컴포넌트에서는 error가 발생했을 때 어떤 UI를 보여줄 것인지 설정할 수 있습니다. 그러나 이벤트 핸들러 안에서 발생한 error나 데이터를 불러오다가 생기는 에러는 ErrorBoundary에서 catch 하지 못합니다.
-이벤트 핸들러와 데이터를 불러오다가 생기는 에러를 ErrorBoundary에서 catch 하도록 ErrorBoundary 클래스 컴포넌트를 수정하였습니다.
-`unhandledrejection` 라는 이벤트를 이용해 이벤트 핸들러에서 발생한 error를 전파시켜 ErrorBoundary에서 error를 catch 하도록 했습니다.
-이외에도 error가 발생했을 때 보여줄 UI가 있다면 `renderFallback` 이라는 props에 컴포넌트를 반환하는 함수를 넘겨주면 됩니다.
+**ErrorBoundary**는 error가 발생했을 때 어떤 UI를 보여줄 것인지 설정할 수 있습니다.
+
+- 그러나 이벤트 핸들러(onClick, onChange 등등)에서 발생한 error는 일반적으로 ErrorBoundary에서 catch 하지 못합니다.
+- 이벤트 핸들러에서 발생한 에러를 ErrorBoundary에서 catch 하도록 ErrorBoundary 클래스 컴포넌트를 개선하였습니다.
+- `unhandledrejection`/`error` 라는 이벤트를 이용해 이벤트 핸들러에서 발생한 error를 전파시켜 ErrorBoundary에서 `renderFallback` 을 이용해 UI 를 보여줄 수 있습니다.
