@@ -1,11 +1,9 @@
-import Title from "../components/Title";
-import UserForm from "../components/UserForm";
-import { useCallback } from "react";
-import { User } from "../models/User";
-import { useNavigate } from "react-router-dom";
-import LinkButton from "../components/LinkButton";
-import { useLogin } from "../hooks/user";
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Title, UserForm, LinkButton } from '../components';
+import { useLogin } from '../hooks/user';
+import { User } from '../models/User';
 
 export function Login() {
   const navigate = useNavigate();
@@ -15,7 +13,7 @@ export function Login() {
     async (user: User) => {
       await login(user);
 
-      navigate("/todo");
+      navigate('/todo');
     },
     [login, navigate]
   );
@@ -26,7 +24,7 @@ export function Login() {
 
       <UserForm onSubmit={handleLogin} />
 
-      <LinkButton to='/signup'>회원가입 할래요!</LinkButton>
+      <LinkButton to="/signup">회원가입 할래요!</LinkButton>
     </Section>
   );
 }

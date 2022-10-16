@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { useState } from "react";
-import useFormField from "../hooks/useFormField";
-import { TodoItem } from "../pages/TodoPage";
-import Button from "./Button";
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { useState } from 'react';
+import { useFormField } from '../hooks/useFormField';
+import { TodoItem } from '../models/TodoItem';
+import { Button } from './Button';
 
-export default function Todo({
+export function Todo({
   id,
   isCompleted,
   todo: content,
@@ -17,7 +17,7 @@ export default function Todo({
   id: number;
   isCompleted: boolean;
   todo: string;
-  updateTodo: (todo: Omit<TodoItem, "userId">) => Promise<void>;
+  updateTodo: (todo: Omit<TodoItem, 'userId'>) => Promise<void>;
   removeTodo: (id: number) => Promise<void>;
   checkComplete: (id: number) => Promise<void>;
 }) {
@@ -25,7 +25,9 @@ export default function Todo({
 
   const [value, onChangeContent, errorMessage] = useFormField({
     initialValue: content,
-    validators: [{ ok: (value) => value !== "", message: "빈 칸으로 수정할 수는 없어요" }],
+    validators: [
+      { ok: (value) => value !== '', message: '빈 칸으로 수정할 수는 없어요' },
+    ],
   });
 
   const handleUpdateTodo = async () => {
@@ -40,7 +42,7 @@ export default function Todo({
   if (isModify) {
     return (
       <>
-        <input type='text' value={value} onChange={onChangeContent} />
+        <input type="text" value={value} onChange={onChangeContent} />
         <Button
           onClick={handleUpdateTodo}
           css={css`
@@ -77,7 +79,12 @@ export default function Todo({
   return (
     <>
       <Label htmlFor={`todo-${id}`}>
-        <input id={`todo-${id}`} type='checkbox' checked={isCompleted} onChange={() => checkComplete(id)} />
+        <input
+          id={`todo-${id}`}
+          type="checkbox"
+          checked={isCompleted}
+          onChange={() => checkComplete(id)}
+        />
         <span>{content}</span>
       </Label>
       <Button

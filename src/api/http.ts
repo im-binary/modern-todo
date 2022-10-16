@@ -1,9 +1,10 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from 'axios';
 
-type AxiosRequestHeaders = AxiosRequestConfig<any>["headers"];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AxiosRequestHeaders = AxiosRequestConfig<any>['headers'];
 
 const instance = axios.create({
-  baseURL: "https://pre-onboarding-selection-task.shop",
+  baseURL: 'https://pre-onboarding-selection-task.shop',
   timeout: 30_000,
 });
 
@@ -19,7 +20,16 @@ instance.interceptors.response.use(
   }
 );
 
-export const post = ({ url, data, headers }: { url: string; data: any; headers?: AxiosRequestHeaders }) => {
+export const post = ({
+  url,
+  data,
+  headers,
+}: {
+  url: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+  headers?: AxiosRequestHeaders;
+}) => {
   return instance.post(url, data, { headers });
 };
 
@@ -40,14 +50,30 @@ export const get = ({
   return instance.get(url, { headers });
 };
 
-export const put = ({ url, data, headers }: { url: string; data: any; headers: AxiosRequestHeaders }) => {
+export const put = ({
+  url,
+  data,
+  headers,
+}: {
+  url: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+  headers: AxiosRequestHeaders;
+}) => {
   return instance.put(url, data, { headers });
 };
 
-export const del = ({ url, headers }: { url: string; headers: AxiosRequestHeaders }) => {
+export const del = ({
+  url,
+  headers,
+}: {
+  url: string;
+  headers: AxiosRequestHeaders;
+}) => {
   return instance.delete(url, { headers });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const patch = (url: string, data: any) => {
   return instance.patch(url, data);
 };

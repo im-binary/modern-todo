@@ -1,0 +1,36 @@
+{
+  "plugins": ["@typescript-eslint", "react-hooks"],
+  "extends": ["react-app", "plugin:@typescript-eslint/recommended", "prettier"],
+  "rules": {
+    // 안 쓰는 변수는 에러 처리
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "additionalHooks": "useRecoilCallback"
+      }
+    ],
+    // 중복 import는 에러 처리
+    "import/no-duplicates": "error",
+    // import 순서를 자동으로 처리
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external", "internal"],
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "alphabetize": { "order": "asc" }
+      }
+    ],
+    // === 사용하도록 처리
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
+    // 재할당하지 않으면 const 로 쓰도록 처리
+    "prefer-const": "error",
+    // var는 반드시 안 쓰도록 처리
+    "no-var": "error"
+  }
+}

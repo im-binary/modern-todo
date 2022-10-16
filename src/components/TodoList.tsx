@@ -1,19 +1,25 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
-import { deleteTodoItem, getTodoList, updateTodoItem } from "../api/todos";
-import { useTokenContext } from "../contexts/TokenContext";
-import { useFetch } from "../hooks/useFetch";
-import { TodoItem } from "../pages/TodoPage";
-import Todo from "./Todo";
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
+import { deleteTodoItem, getTodoList, updateTodoItem } from '../api/todos';
+import { useTokenContext } from '../contexts/TokenContext';
+import { useFetch } from '../hooks/useFetch';
+import { TodoItem } from '../models/TodoItem';
+import { Todo } from './Todo';
 
-export default function TodoList() {
+export function TodoList() {
   const navigate = useNavigate();
   const { accessToken } = useTokenContext();
-  const { data: todoList } = useFetch<TodoItem[]>(["getTodoList"], () => getTodoList(accessToken));
+  const { data: todoList } = useFetch<TodoItem[]>(['getTodoList'], () =>
+    getTodoList(accessToken)
+  );
 
-  const updateTodo = async ({ id, isCompleted, todo }: Omit<TodoItem, "userId">) => {
+  const updateTodo = async ({
+    id,
+    isCompleted,
+    todo,
+  }: Omit<TodoItem, 'userId'>) => {
     await updateTodoItem(id, todo, isCompleted, accessToken);
     navigate(0);
   };
@@ -51,7 +57,12 @@ export default function TodoList() {
     <List>
       {todoList.map((item) => (
         <ListItem key={item.id}>
-          <Todo {...item} updateTodo={updateTodo} removeTodo={removeTodo} checkComplete={checkComplete} />
+          <Todo
+            {...item}
+            updateTodo={updateTodo}
+            removeTodo={removeTodo}
+            checkComplete={checkComplete}
+          />
         </ListItem>
       ))}
     </List>
