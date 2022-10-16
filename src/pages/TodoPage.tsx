@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { Suspense } from "react";
-import { Title, TodoForm, TodoList } from "../components";
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { Suspense } from 'react';
+import { Title, TodoForm, TodoList } from '../components';
 
 export function TodoPage() {
   return (

@@ -1,8 +1,9 @@
 interface FetchCache {
   keys: unknown[];
   promised?: Promise<void>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rejected?: any;
-  resolved?: any;
+  resolved?: unknown;
 }
 
 const fetchClient = new Map<string, FetchCache>();
@@ -20,7 +21,7 @@ export function useFetch<T>(
   }
 
   if (resolved != null) {
-    return { data: resolved };
+    return { data: resolved as T };
   }
 
   if (promised != null) {

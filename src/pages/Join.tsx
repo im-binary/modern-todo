@@ -1,10 +1,9 @@
-import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { useJoin } from "../hooks/user";
-import { LinkButton, Title, UserForm } from "../components";
-import { User } from "../models/User";
-import { useLogin } from "../hooks/user";
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { LinkButton, Title, UserForm } from '../components';
+import { useJoin, useLogin } from '../hooks/user';
+import { User } from '../models/User';
 
 export function Join() {
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ export function Join() {
       await join(user);
       await login(user);
 
-      navigate("/todo");
+      navigate('/todo');
     },
     [join, login, navigate]
   );
@@ -27,7 +26,7 @@ export function Join() {
 
       <UserForm onSubmit={handleJoin} />
 
-      <LinkButton to='/'>로그인 할래요!</LinkButton>
+      <LinkButton to="/">로그인 할래요!</LinkButton>
     </Section>
   );
 }

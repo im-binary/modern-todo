@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { Link } from "react-router-dom";
-import { Button } from "./Button";
+import { css } from '@emotion/react';
+import { Link } from 'react-router-dom';
+import { Button } from './Button';
 
 interface Props {
   to: string;
-  buttonType?: "button" | "submit" | "reset";
+  buttonType?: 'button' | 'submit' | 'reset';
   children: React.ReactNode;
 }
 
-export function LinkButton({ to, buttonType = "button", children }: Props) {
+export function LinkButton({ to, buttonType = 'button', children }: Props) {
   return (
     <Link
       to={to}

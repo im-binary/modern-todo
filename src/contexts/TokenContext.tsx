@@ -1,11 +1,11 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 const tokenStorage = {
   get: () => {
-    return localStorage.getItem("access_token") || "";
+    return localStorage.getItem('access_token') || '';
   },
   set: (accessToken: string) => {
-    localStorage.setItem("access_token", accessToken);
+    localStorage.setItem('access_token', accessToken);
   },
 };
 
@@ -17,15 +17,15 @@ interface TokenContextType {
 
 const TokenContext = createContext<TokenContextType>({
   isLogin: false,
-  accessToken: "",
-  setAccessToken: () => {},
+  accessToken: '',
+  setAccessToken: () => undefined,
 });
 
 export const TokenContextProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string>(tokenStorage.get());
 
   const value = {
-    isLogin: accessToken !== "",
+    isLogin: accessToken !== '',
     accessToken,
     setAccessToken: (accessToken: string) => {
       tokenStorage.set(accessToken);
@@ -34,7 +34,9 @@ export const TokenContextProvider = ({ children }: { children: ReactNode }) => {
     },
   };
 
-  return <TokenContext.Provider value={value}>{children}</TokenContext.Provider>;
+  return (
+    <TokenContext.Provider value={value}>{children}</TokenContext.Provider>
+  );
 };
 
 export const useTokenContext = () => {
