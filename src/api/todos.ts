@@ -13,7 +13,7 @@ export const getTodoList = async (accessToken: string) => {
 };
 
 export const createTodoItem = async (todo: string, accessToken: string) => {
-  const { data } = await post({
+  await post({
     url: '/todos',
     data: { todo },
     headers: {
@@ -21,8 +21,6 @@ export const createTodoItem = async (todo: string, accessToken: string) => {
       Authorization: `Bearer ${accessToken}`,
     },
   });
-
-  return data;
 };
 
 export const updateTodoItem = async (
@@ -31,7 +29,7 @@ export const updateTodoItem = async (
   isCompleted: boolean,
   accessToken: string
 ) => {
-  const { data } = await put({
+  await put({
     url: `/todos/${todoItemId}`,
     data: { todo, isCompleted },
     headers: {
@@ -39,15 +37,13 @@ export const updateTodoItem = async (
       Authorization: `Bearer ${accessToken}`,
     },
   });
-
-  return data;
 };
 
 export const deleteTodoItem = async (
   todoItemId: number,
   accessToken: string
 ) => {
-  return await del({
+  await del({
     url: `/todos/${todoItemId}`,
     headers: {
       'Content-Type': 'application/json',

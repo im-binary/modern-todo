@@ -20,7 +20,7 @@ instance.interceptors.response.use(
   }
 );
 
-export const post = ({
+export const post = <T>({
   url,
   data,
   headers,
@@ -30,7 +30,7 @@ export const post = ({
   data: any;
   headers?: AxiosRequestHeaders;
 }) => {
-  return instance.post(url, data, { headers });
+  return instance.post<T>(url, data, { headers });
 };
 
 export const get = ({
@@ -50,7 +50,7 @@ export const get = ({
   return instance.get(url, { headers });
 };
 
-export const put = ({
+export const put = <T>({
   url,
   data,
   headers,
@@ -60,7 +60,7 @@ export const put = ({
   data: any;
   headers: AxiosRequestHeaders;
 }) => {
-  return instance.put(url, data, { headers });
+  return instance.put<T>(url, data, { headers });
 };
 
 export const del = ({
@@ -71,17 +71,4 @@ export const del = ({
   headers: AxiosRequestHeaders;
 }) => {
   return instance.delete(url, { headers });
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const patch = (url: string, data: any) => {
-  return instance.patch(url, data);
-};
-
-export const head = (url: string) => {
-  return instance.head(url);
-};
-
-export const options = (url: string) => {
-  return instance.options(url);
 };
