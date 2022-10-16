@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import useFormField from "../hooks/useFormField";
+import { useFormField } from "../hooks/useFormField";
 import { User } from "../models/User";
-import Button from "./Button";
+import { Button } from "./Button";
 
-export default function UserForm({ onSubmit }: { onSubmit: (user: User) => void }) {
+export function UserForm({ onSubmit }: { onSubmit: (user: User) => void }) {
   const [email, onChangeEmail, emailErrorMessage] = useFormField({
     validators: [
       { ok: (value) => value !== "", message: "이메일을 입력해주세요" },

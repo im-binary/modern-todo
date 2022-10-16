@@ -7,7 +7,7 @@ interface Validator {
   message: string;
 }
 
-export default function useFormField({ initialValue, validators }: { initialValue?: string; validators: Validator[] }) {
+export function useFormField({ initialValue, validators }: { initialValue?: string; validators: Validator[] }) {
   const [value, setValue] = useState(initialValue ?? "");
   const [errorMessage, setErrorMessage] = useState<string>();
 

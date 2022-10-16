@@ -1,8 +1,8 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import Button from "./Button";
+import { Button } from "./Button";
 
-export default function ErrorAlert({ errorMessage, reset }: { errorMessage: string; reset: () => void }) {
+export function ErrorAlert({ errorMessage, reset }: { errorMessage: string; reset: () => void }) {
   return (
     <Modal onClick={reset}>
       <Section onClick={(e) => e.stopPropagation()}>

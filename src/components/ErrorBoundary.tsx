@@ -1,5 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from "react";
-import useEventErrorHandle from "../hooks/useEventErrorHandle";
+import { EventErrorHandler } from "./EventErrorHandler";
 
 export interface RenderFallbackProps {
   error: Error;
@@ -48,19 +48,13 @@ export class OriginalErrorBoundary extends Component<Props, State> {
   }
 }
 
-function EventErrorHandle({ children }: { children: ReactNode }) {
-  useEventErrorHandle();
-
-  return <>{children}</>;
-}
-
 export function ErrorBoundary({ children, ...props }: { children?: ReactNode; renderFallback: RenderFallback }) {
   return (
     <OriginalErrorBoundary
       {...props}
       renderFallback={({ error, reset }) => props.renderFallback({ error, children, reset })}
     >
-      <EventErrorHandle>{children}</EventErrorHandle>
+      <EventErrorHandler>{children}</EventErrorHandler>
     </OriginalErrorBoundary>
   );
 }

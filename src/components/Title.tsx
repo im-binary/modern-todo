@@ -6,7 +6,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function Title({ className, children }: Props) {
+export function Title({ className, children }: Props) {
   return (
     <h1
       className={className}

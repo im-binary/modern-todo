@@ -6,9 +6,9 @@ import { deleteTodoItem, getTodoList, updateTodoItem } from "../api/todos";
 import { useTokenContext } from "../contexts/TokenContext";
 import { useFetch } from "../hooks/useFetch";
 import { TodoItem } from "../pages/TodoPage";
-import Todo from "./Todo";
+import { Todo } from "./Todo";
 
-export default function TodoList() {
+export function TodoList() {
   const navigate = useNavigate();
   const { accessToken } = useTokenContext();
   const { data: todoList } = useFetch<TodoItem[]>(["getTodoList"], () => getTodoList(accessToken));

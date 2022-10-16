@@ -2,9 +2,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Suspense } from "react";
-import Title from "../components/Title";
-import { TodoForm } from "../components/TodoForm";
-import TodoList from "../components/TodoList";
+import { Title, TodoForm, TodoList } from "../components";
 
 export interface TodoItem {
   id: number;

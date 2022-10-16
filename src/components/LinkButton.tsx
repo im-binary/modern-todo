@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
-import Button from "./Button";
+import { Button } from "./Button";
 
 interface Props {
   to: string;
@@ -9,7 +9,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function LinkButton({ to, buttonType = "button", children }: Props) {
+export function LinkButton({ to, buttonType = "button", children }: Props) {
   return (
     <Link
       to={to}

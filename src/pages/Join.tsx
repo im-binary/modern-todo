@@ -1,9 +1,7 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useJoin } from "../hooks/user";
-import LinkButton from "../components/LinkButton";
-import Title from "../components/Title";
-import UserForm from "../components/UserForm";
+import { LinkButton, Title, UserForm } from "../components";
 import { User } from "../models/User";
 import { useLogin } from "../hooks/user";
 import styled from "@emotion/styled";

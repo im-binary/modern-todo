@@ -1,8 +1,7 @@
 import { TokenContextProvider } from "./contexts/TokenContext";
 import { Suspense } from "react";
-import { ErrorBoundary, RenderFallbackProps } from "./components/ErrorBoundary";
+import { ErrorBoundary, RenderFallbackProps, ErrorAlert } from "./components";
 import { Router } from "./Router";
-import ErrorAlert from "./components/ErrorAlert";
 import "./App.css";
 
 function RenderFallback({ error, children, reset }: RenderFallbackProps) {

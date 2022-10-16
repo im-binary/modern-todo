@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
-export default function useEventErrorHandle() {
+export function EventErrorHandler({ children }: { children: ReactNode }) {
   const [error, setError] = useState<any | null>(null);
 
   if (error != null) {
@@ -25,5 +25,5 @@ export default function useEventErrorHandle() {
     };
   }, []);
 
-  return [error, setError] as const;
+  return <>{children}</>;
 }
