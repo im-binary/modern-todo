@@ -1,5 +1,16 @@
 # wanted-pre-onboarding-frontend
 
+## 지원자
+
+- 이름 : 전이진
+- 이메일 : pongdang0121@gmail.com
+
+---
+
+## 배포링크
+
+[✨ 배포링크](https://todo.pongdang.today/)
+
 ## 프로젝트의 실행 방법
 
 https://todo.pongdang.today 로 접속하여 실행합니다.
