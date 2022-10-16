@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import { useState } from "react";
 import useFormField from "../hooks/useFormField";
 import { TodoItem } from "../pages/TodoPage";
@@ -47,12 +49,47 @@ export default function Todo({
 
   return (
     <>
-      <label htmlFor={`todo-${id}`}>
+      <label htmlFor={`todo-${id}`} css={todoContentContainer}>
         <input id={`todo-${id}`} type='checkbox' checked={isCompleted} onChange={() => checkComplete(id)} />
         <span>{content}</span>
       </label>
-      <Button onClick={() => setIsModify(true)}>수정</Button>
-      <Button onClick={() => removeTodo(id)}>삭제</Button>
+      <Button
+        onClick={() => setIsModify(true)}
+        css={css`
+          padding: 4px;
+          border-radius: 10px;
+        `}
+      >
+        수정
+      </Button>
+      <Button
+        onClick={() => removeTodo(id)}
+        css={css`
+          padding: 4px;
+          border-radius: 10px;
+        `}
+      >
+        삭제
+      </Button>
     </>
   );
 }
+
+const todoContentContainer = css`
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    word-break: break-all;
+    cursor: pointer;
+  }
+
+  input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+`;
