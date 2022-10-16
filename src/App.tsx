@@ -1,23 +1,22 @@
 import { TokenContextProvider } from "./contexts/TokenContext";
-import { Suspense, useState } from "react";
-import { ErrorBoundary } from "./components/ErrorBoundary";
+import { Suspense } from "react";
+import { ErrorBoundary, RenderFallbackProps } from "./components/ErrorBoundary";
 import { Router } from "./Router";
 import ErrorAlert from "./components/ErrorAlert";
 import "./App.css";
 
-function App() {
-  const [isModalOpen] = useState(true);
-
+function RenderFallback({ error, children, reset }: RenderFallbackProps) {
   return (
-    <ErrorBoundary
-      // TODO: alret DOM 만들기
-      renderFallback={({ error, children, reset }) => (
-        <>
-          <ErrorAlert isModalOpen={isModalOpen} errorMessage={error.message} reset={reset} />
-          {children}
-        </>
-      )}
-    >
+    <>
+      <ErrorAlert errorMessage={error.message} reset={reset} />
+      {children}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <ErrorBoundary renderFallback={RenderFallback}>
       <Suspense fallback={<h1>loading...</h1>}>
         <TokenContextProvider>
           <Router />
