@@ -13,10 +13,6 @@
 
 ## 프로젝트의 실행 방법
 
-https://todo.pongdang.today 로 접속하여 실행합니다.
-
-혹은 아래 command를 이용하여 실행할 수 있습니다.
-
 ```
 git clone git@github.com:pongdang/wanted-pre-onboarding-frontend.git
 
