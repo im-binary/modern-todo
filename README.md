@@ -35,8 +35,10 @@ open http://localhost:3000
 |![리다이렉트(todo)](https://user-images.githubusercontent.com/76990149/196037056-c7d9f1cd-e7e4-4a74-936e-f0874c897662.gif)|![리다이렉트(login)](https://user-images.githubusercontent.com/76990149/196037060-7feb274f-27b4-469e-848b-d5f7d84274c0.gif)|
 |todo 등록 / 수정|todo 삭제 / 완료처리|
 |![todo등록:수정](https://user-images.githubusercontent.com/76990149/196037226-fc72de75-ccd1-4fee-82e2-cc87d8795f66.gif)|![todo삭제:완료](https://user-images.githubusercontent.com/76990149/196037232-fad3976b-5edc-4976-8715-04959a1da7c2.gif)|
-|todo 등록, 수정, 완료, 삭제||
-|![마지막](https://user-images.githubusercontent.com/76990149/196037414-db280536-c120-47b8-8b1a-ad3b27af6dad.gif)||
+
+|todo 등록, 수정, 완료, 삭제|
+|:---:|
+|![마지막](https://user-images.githubusercontent.com/76990149/196037414-db280536-c120-47b8-8b1a-ad3b27af6dad.gif)|
 
 
 ## 작업한 내용
