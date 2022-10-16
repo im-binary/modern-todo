@@ -1,7 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 import useEventErrorHandle from "../hooks/useEventErrorHandle";
 
-interface RenderFallbackProps {
+export interface RenderFallbackProps {
   error: Error;
   reset: () => void;
   children?: ReactNode;

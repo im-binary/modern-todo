@@ -16,13 +16,17 @@ export default function LinkButton({ to, buttonType = "button", children }: Prop
       css={css`
         display: block;
         text-decoration-color: #dc602a;
-        button {
-          background: transparent;
-          color: #dc602a;
-        }
       `}
     >
-      <Button type={buttonType}>{children}</Button>
+      <Button
+        css={css`
+          background: transparent;
+          color: #dc602a;
+        `}
+        type={buttonType}
+      >
+        {children}
+      </Button>
     </Link>
   );
 }

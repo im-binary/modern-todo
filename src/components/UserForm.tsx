@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import useFormField from "../hooks/useFormField";
 import { User } from "../models/User";
 import Button from "./Button";
@@ -32,67 +31,60 @@ export default function UserForm({ onSubmit }: { onSubmit: (user: User) => void 
   };
 
   return (
-    <form onSubmit={handleSubmit} css={userFormContainer}>
-      <label htmlFor='user-email'>
-        <p>이메일</p>
-        <input type='email' id='user-email' name='user-email' onChange={onChangeEmail} autoFocus />
-        <p>{emailErrorMessage}</p>
-      </label>
+    <Form onSubmit={handleSubmit}>
+      <InputLabel htmlFor='user-email'>
+        <InputName>이메일</InputName>
+        <Input type='email' id='user-email' name='user-email' onChange={onChangeEmail} autoFocus />
+        <InputErrorMessage>{emailErrorMessage}</InputErrorMessage>
+      </InputLabel>
 
-      <label htmlFor='user-password'>
-        <p>비밀번호</p>
-        <input type='password' id='user-password' name='user-password' onChange={onChangePassword} />
-        <p>{passwordErrorMessage}</p>
-      </label>
+      <InputLabel htmlFor='user-password'>
+        <InputName>비밀번호</InputName>
+        <Input type='password' id='user-password' name='user-password' onChange={onChangePassword} />
+        <InputErrorMessage>{passwordErrorMessage}</InputErrorMessage>
+      </InputLabel>
 
-      <Button type='submit' disabled={errorMessage != null} className='submit-button'>
+      <SubmitButton type='submit' disabled={errorMessage != null}>
         제출
-      </Button>
-    </form>
+      </SubmitButton>
+    </Form>
   );
 }
 
-const userFormContainer = css`
+const Form = styled.form`
   padding: 20px;
   width: 300px;
+`;
 
-  label {
-    display: block;
+const Input = styled.input`
+  border-width: 0px 0px 1px 0px;
+  width: 100%;
+  height: 30px;
+  padding-left: 8px;
+`;
 
-    p:first-of-type {
-      font-weight: bold;
-      font-size: 1.6rem;
-    }
+const InputLabel = styled.label`
+  display: block;
+`;
 
-    input {
-      border-width: 0px 0px 1px 0px;
-      width: 100%;
-      height: 30px;
-      padding-left: 8px;
-    }
+const InputName = styled.p`
+  font-weight: bold;
+  font-size: 1.6rem;
+`;
 
-    p:nth-of-type(2) {
-      text-indent: 1rem;
-      color: #f53b3b;
-      height: 16px;
-      margin-bottom: 0;
-      font-size: 1.3rem;
-    }
-  }
+const InputErrorMessage = styled.p`
+  text-indent: 1rem;
+  color: #f53b3b;
+  height: 16px;
+  margin-bottom: 0;
+  font-size: 1.3rem;
+`;
 
-  button.submit-button {
-    padding: 16px;
-    margin-top: 30px;
-    /* border: 0;
-    border-radius: 20px;
-    background-color: #dc602a;
-    color: #fff;
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: 1.2px; */
-  }
+const SubmitButton = styled(Button)`
+  padding: 16px;
+  margin-top: 30px;
 
-  button:disabled.submit-button {
+  &:disabled {
     background-color: #c1c1c199;
     cursor: not-allowed;
     font-weight: 500;

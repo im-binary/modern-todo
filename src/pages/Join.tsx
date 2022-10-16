@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useJoin } from "../hooks/useJoin";
@@ -7,7 +6,7 @@ import Title from "../components/Title";
 import UserForm from "../components/UserForm";
 import { User } from "../models/User";
 import { useLogin } from "../hooks/useLogin";
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
 export function Join() {
   const navigate = useNavigate();
@@ -25,17 +24,17 @@ export function Join() {
   );
 
   return (
-    <section css={joinContainer}>
+    <Section>
       <Title>회원가입</Title>
 
       <UserForm onSubmit={handleJoin} />
 
       <LinkButton to='/'>로그인 할래요!</LinkButton>
-    </section>
+    </Section>
   );
 }
 
-const joinContainer = css`
+const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;

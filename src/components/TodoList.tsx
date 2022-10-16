@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { deleteTodoItem, getTodoList, updateTodoItem } from "../api/todos";
 import { useTokenContext } from "../contexts/TokenContext";
@@ -47,29 +48,29 @@ export default function TodoList() {
   }
 
   return (
-    <ul css={todoListContainer}>
+    <List>
       {todoList.map((item) => (
-        <li key={item.id}>
+        <ListItem key={item.id}>
           <Todo {...item} updateTodo={updateTodo} removeTodo={removeTodo} checkComplete={checkComplete} />
-        </li>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 }
 
-const todoListContainer = css`
+const List = styled.ul`
   li + li {
     margin-top: 20px;
   }
+`;
 
-  li {
-    display: grid;
-    grid-template-columns: 1fr 50px 50px;
-    align-items: center;
-    gap: 6px;
-    border: 1px solid;
-    border-radius: 20px;
-    padding: 20px 10px;
-    font-size: 1.6rem;
-  }
+const ListItem = styled.li`
+  display: grid;
+  grid-template-columns: 1fr 50px 50px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 20px 10px;
+  font-size: 1.6rem;
 `;

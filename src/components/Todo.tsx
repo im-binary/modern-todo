@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { useState } from "react";
 import useFormField from "../hooks/useFormField";
 import { TodoItem } from "../pages/TodoPage";
@@ -75,10 +76,10 @@ export default function Todo({
 
   return (
     <>
-      <label htmlFor={`todo-${id}`} css={todoContentContainer}>
+      <Label htmlFor={`todo-${id}`}>
         <input id={`todo-${id}`} type='checkbox' checked={isCompleted} onChange={() => checkComplete(id)} />
         <span>{content}</span>
-      </label>
+      </Label>
       <Button
         onClick={() => setIsModify(true)}
         css={css`
@@ -101,7 +102,7 @@ export default function Todo({
   );
 }
 
-const todoContentContainer = css`
+const Label = styled.label`
   display: grid;
   grid-template-columns: 30px 1fr;
   gap: 6px;
