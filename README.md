@@ -1,4 +1,4 @@
-# wanted-pre-onboarding-frontend
+# modern-todo
 
 ## 지원자
 
@@ -14,9 +14,9 @@
 ## 프로젝트의 실행 방법
 
 ```
-git clone git@github.com:pongdang/wanted-pre-onboarding-frontend.git
+git clone git@github.com:pongdang/modern-todo.git
 
-cd wanted-pre-onboarding-frontend
+cd modern-todo
 
 yarn install
 
@@ -46,7 +46,7 @@ open http://localhost:3000
 
 **Context API**로 유저의 로그인 상태를 전역에서 관리할 수 있도록 하였고 상태에 따라 접근할 수 있는 라우터를 처리했습니다.
 
-- [HoC로 작성된 함수](https://github.com/pongdang/wanted-pre-onboarding-frontend/blob/main/src/Router.tsx#L28-L42)에서 접근 대상에 따른 페이지의 타입(`member | guest`)을 명시하여 isLogin 상태와 비교합니다.
+- [HoC로 작성된 함수](https://github.com/pongdang/modern-todo/blob/main/src/Router.tsx#L28-L42)에서 접근 대상에 따른 페이지의 타입(`member | guest`)을 명시하여 isLogin 상태와 비교합니다.
 - 로그인하지 않은 상태(`isLogin === false`)에서 member들만 접근할 수 있는 페이지(`/todo`)를 접근하려 한다면 로그인 페이지(`/`) 로 리다이렉트 시켜줍니다.
 - 로그인한 상태(`isLogin === true`)에서 guest들만 접근할 수 있는 페이지(`/`, `/signup`)을 접근하려 한자면 투두 페이지(`/todo`) 로 리다이렉트 시켜줍니다.
 
@@ -54,11 +54,11 @@ open http://localhost:3000
 
 **Suspense**를 활용하면 비동기 함수 호출의 상태에 따라 UI 를 선언적으로 보여줄 수 있습니다.
 
-- [Suspense의 원리](https://dev.to/charlesstover/react-suspense-with-the-fetch-api-374j)에 대해 찾아보고, 이를 참고하여 라이브러리(react-query, Relay) 없이 사용할 수 있도록 필요한 부분만 [useFetch](https://github.com/pongdang/wanted-pre-onboarding-frontend/blob/main/src/hooks/useFetch.tsx#L11-L46)로 재구현하였습니다.
+- [Suspense의 원리](https://dev.to/charlesstover/react-suspense-with-the-fetch-api-374j)에 대해 찾아보고, 이를 참고하여 라이브러리(react-query, Relay) 없이 사용할 수 있도록 필요한 부분만 [useFetch](https://github.com/pongdang/modern-todo/blob/main/src/hooks/useFetch.tsx#L11-L46)로 재구현하였습니다.
 - 로딩 중일 때는 Promise를 throw 하여 Suspense 에서 fallback 엘리먼트를 렌더링하도록 합니다.
 - useFetch 에서 invalidate 함수를 얻어서 특정 쿼리(fetchTodoList)를 다시 refetch 할 수 있습니다.
 
-### 3. ErrorBoundary 를 이용한 선언적인 에러 처리 (event 에러를 잡기위한 useEventErrorHandle 구현)
+### 3. ErrorBoundary 를 이용한 선언적인 에러 처리 (event 에러를 잡기위한 EventErrorHandle 구현)
 
 **ErrorBoundary**는 error가 발생했을 때 어떤 UI를 보여줄 것인지 설정할 수 있습니다.
 
@@ -67,4 +67,4 @@ open http://localhost:3000
 - `unhandledrejection`/`error` 라는 이벤트를 이용해 이벤트 핸들러에서 발생한 error를 전파시켜 ErrorBoundary에서 `renderFallback` 을 이용해 UI 를 보여줄 수 있습니다.
 
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fpongdang%2Fwanted-pre-onboarding-frontend&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fpongdang%2Fmodern-todo&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
