@@ -21,7 +21,7 @@ export function Todo({
 }) {
   const [isModify, setIsModify] = useState(false);
 
-  const { value, onChange, errorMessage } = useFormField({
+  const { value, onChange, errorMessage, setValue } = useFormField({
     initialValue: content,
     validators: [
       { ok: (value) => value !== '', message: '빈 칸으로 수정할 수는 없어요' },
@@ -50,7 +50,7 @@ export function Todo({
 
   return (
     <>
-      <Label htmlFor={`todo-${id}`}>
+      <Label htmlFor={`todo-${id}`} isCompleted={isCompleted}>
         <input
           id={`todo-${id}`}
           type="checkbox"
@@ -59,7 +59,14 @@ export function Todo({
         />
         <span>{content}</span>
       </Label>
-      <TodoButton onClick={() => setIsModify(true)}>수정</TodoButton>
+      <TodoButton
+        onClick={() => {
+          setIsModify(true);
+          setValue(content);
+        }}
+      >
+        수정
+      </TodoButton>
       <TodoButton onClick={() => removeTodo(id)}>삭제</TodoButton>
     </>
   );
@@ -73,6 +80,8 @@ const Label = styled.label`
   justify-content: center;
 
   span {
+    text-decoration: ${({ isCompleted }: { isCompleted: boolean }) =>
+      isCompleted ? 'line-through' : 'unset'};
     word-break: break-all;
     cursor: pointer;
   }
