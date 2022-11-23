@@ -4,8 +4,13 @@ const tokenStorage = {
   get: () => {
     return localStorage.getItem('access_token') || '';
   },
+
   set: (accessToken: string) => {
     localStorage.setItem('access_token', accessToken);
+  },
+
+  remove: () => {
+    localStorage.removeItem('access_token');
   },
 };
 
@@ -13,12 +18,14 @@ interface TokenContextType {
   isLogin: boolean;
   accessToken: string;
   setAccessToken: (accessToken: string) => void;
+  clearAccessToken: () => void;
 }
 
 const TokenContext = createContext<TokenContextType>({
   isLogin: false,
   accessToken: '',
   setAccessToken: () => undefined,
+  clearAccessToken: () => undefined,
 });
 
 export const TokenContextProvider = ({ children }: { children: ReactNode }) => {
@@ -31,6 +38,11 @@ export const TokenContextProvider = ({ children }: { children: ReactNode }) => {
       tokenStorage.set(accessToken);
 
       setAccessToken(accessToken);
+    },
+    clearAccessToken: () => {
+      tokenStorage.remove();
+
+      setAccessToken('');
     },
   };
 

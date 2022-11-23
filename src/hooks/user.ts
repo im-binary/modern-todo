@@ -26,3 +26,13 @@ export function useJoin() {
     },
   } as const;
 }
+
+export function useLogout() {
+  const { clearAccessToken } = useTokenContext();
+
+  return {
+    logout: () => {
+      clearAccessToken();
+    },
+  };
+}
