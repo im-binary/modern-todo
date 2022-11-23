@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 import { useFormField } from '../hooks/useFormField';
 import { User } from '../models/User';
+import {
+  isEmptyValue,
+  isValidEmail,
+  isValidPassword,
+} from '../util/validation';
 import { Button } from './Button';
 
 export function UserForm({ onSubmit }: { onSubmit: (user: User) => void }) {
@@ -10,9 +15,9 @@ export function UserForm({ onSubmit }: { onSubmit: (user: User) => void }) {
     errorMessage: emailErrorMessage,
   } = useFormField({
     validators: [
-      { ok: (value) => value !== '', message: '이메일을 입력해주세요' },
+      { ok: (value) => isEmptyValue(value), message: '이메일을 입력해주세요' },
       {
-        ok: (value) => value.includes('@'),
+        ok: (value) => isValidEmail(value),
         message: '이메일 형식이 올바르지 않습니다',
       },
     ],
@@ -24,9 +29,12 @@ export function UserForm({ onSubmit }: { onSubmit: (user: User) => void }) {
     errorMessage: passwordErrorMessage,
   } = useFormField({
     validators: [
-      { ok: (value) => value !== '', message: '비밀번호를 입력해주세요' },
       {
-        ok: (value) => value.length >= 8,
+        ok: (value) => isEmptyValue(value),
+        message: '비밀번호를 입력해주세요',
+      },
+      {
+        ok: (value) => isValidPassword(value),
         message: '비밀번호는 8자 이상이어야 합니다',
       },
     ],
