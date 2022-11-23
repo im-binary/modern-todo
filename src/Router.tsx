@@ -26,17 +26,16 @@ function Redirect({ to }: { to: string }) {
 
 // TODO: hocs 디렉토리로 이동하기
 function withAuthGuard(type: 'member' | 'guest', Component: JSX.Element) {
-  return (() => {
-    const { isLogin } = useTokenContext();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { isLogin } = useTokenContext();
 
-    if (!isLogin && type === 'member') {
-      return <Redirect to="/" />;
-    }
+  if (!isLogin && type === 'member') {
+    return <Redirect to="/" />;
+  }
 
-    if (isLogin && type === 'guest') {
-      return <Redirect to="/todo" />;
-    }
+  if (isLogin && type === 'guest') {
+    return <Redirect to="/todo" />;
+  }
 
-    return Component;
-  })();
+  return Component;
 }
