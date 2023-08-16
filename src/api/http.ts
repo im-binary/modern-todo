@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 type AxiosRequestHeaders = AxiosRequestConfig<any>['headers'];
 
 const instance = axios.create({
-  baseURL: 'https://pre-onboarding-selection-task.shop',
+  baseURL: 'https://www.pre-onboarding-selection-task.shop/',
   timeout: 30_000,
 });
 
