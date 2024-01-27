@@ -1,5 +1,4 @@
 # modern-todo
----
 
 ## 배포링크
 
@@ -12,7 +11,7 @@
 ## 프로젝트의 실행 방법
 
 ```
-git clone git@github.com:pongdang/modern-todo.git
+git clone https://github.com/im-binary/modern-todo.git
 
 cd modern-todo
 
