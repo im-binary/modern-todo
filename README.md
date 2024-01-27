@@ -1,10 +1,4 @@
 # modern-todo
-
-## 지원자
-
-- 이름 : 전이진
-- 이메일 : pongdang0121@gmail.com
-
 ---
 
 ## 배포링크
